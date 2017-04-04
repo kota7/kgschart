@@ -1,4 +1,4 @@
 # kgschart
-Parse KGS Ranks Graph into Numeric Data
+Recover Numeric Data from KGS Ranks Graph
 
 ** UNDER DEVELOPMENT **

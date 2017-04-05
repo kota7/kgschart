@@ -53,6 +53,7 @@ class KgsChart:
         if b-t > 0 and r-l > 0:
             self.graph = Graph(im[t:b, l:r])
             self.yaxis = Yaxis(im[:, 0:(l-1)]) 
+            self.caption = Caption(im[0:t, l:r])
             
 
     
@@ -130,6 +131,10 @@ class KgsChart:
         if self.graph is not None:
             plt.subplot(223)
             self.graph.plot(False)
+        if self.caption is not None:
+            plt.subplot(224)
+            self.caption.plot(False)
         plt.show()
+
 
 

@@ -28,6 +28,11 @@ class KgsChart:
     tbrl = [0,0,0,0]
 
 
+    # line_index: numpy array whose size equals the ncol
+    #             each element indicates the index of graph line
+    #             within the graph area
+    line_index = np.empty(0)
+
 
     def __init__(self, imagefile):
         if  not os.path.exists(imagefile): 
@@ -35,8 +40,11 @@ class KgsChart:
         
         self.image = np.asarray(Image.open(imagefile))
         self.tbrl = self.detect_graph_area()
-
-
+        
+        im = self.image
+        t,b,r,l = self.tbrl
+        self.graph = Graph(im[t:b, r:l])
+        
 
     
     def detect_graph_area(self):
@@ -142,6 +150,19 @@ class KgsChart:
 
         return [top, bottom, right, left]
 
+    
+
+    def parse(self):
+        if self.image is None: return
+
+        # obtain the line graph height
+        self.line_index = self.graph.get_line_index()
+
+        # obtain number of grid lines
+        # this helps to detect y-axis labels
+        ngrids = self.graph.get_num_grids()
+        print(ngrids)
+
 
     
     def display(self):
@@ -155,13 +176,21 @@ class KgsChart:
 
 # quick test code below (to be deleted later)
 k = KgsChart('../data/images/kotakun-ja_JP.png')
-print k.tbrl
+print(k.tbrl)
+k.parse()
+#plt.plot(-k.line_index)
+plt.show()
+
+
 #k.display()
 
 
 k = KgsChart('../data/images/Quinton-ja_JP.png')
-print k.tbrl
+print(k.tbrl)
+k.parse()
 
 k = KgsChart('../data/images/Zen19L-ja_JP.png')
-print k.tbrl
-
+print(k.tbrl)
+k.parse()
+#plt.plot(-k.line_index)
+plt.show()

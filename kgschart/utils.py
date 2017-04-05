@@ -50,6 +50,10 @@ def to_gray(arr, white, black):
     return out
     
     
+def detect_consecutive_false(arr):
+    return detect_consecutive_true(np.logical_not(arr))
+
+
 def detect_consecutive_true(arr):
     """
     returns the tuple of two index vectors, (start, end) 
@@ -74,5 +78,6 @@ def detect_consecutive_true(arr):
         print("unexpected error")
         raise
     return (start, end)
+
 
 

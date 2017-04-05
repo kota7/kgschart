@@ -130,9 +130,6 @@ if __name__ == '__main__':
     print('TBLR', k.tblr)
     k.parse()
 
-
-    import sys
-    sys.exit()
     # quick test code below (to be deleted later)
     print('***********************')
     k = KgsChart('../data/images/kotakun-ja_JP.png')

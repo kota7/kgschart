@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 from colors import BEIGE, BLACK, GRAY
-from utils import rgb_dist, to_gray
+from utils import rgb_dist, to_gray, detect_consecutive_false
 
 
 class Yaxis:
@@ -50,12 +50,10 @@ class Yaxis:
         thres_dist = 0.1
         thres_frac = 0.95
 
-
         def is_background(arr):
             dist = rgb_dist(arr, BEIGE)
             frac = np.mean(dist < thres_dist)
             return frac >= thres_frac
-        
 
         # extract labels rows
         # start from position and expand the area up and down
@@ -92,12 +90,13 @@ class Yaxis:
             dist = rgb_dist(label, BEIGE)
             frac = np.mean(dist < thres_dist, axis=0)
             is_background = (frac >= thres_frac)
-            start = np.where(np.logical_and(
-                np.logical_not(is_background),
-                np.append(True, is_background[0:-1])))[0]
-            end = np.where(np.logical_and(
-                np.logical_not(is_background),
-                np.append(is_background[1:], True)))[0] + 1
+            #start = np.where(np.logical_and(
+            #    np.logical_not(is_background),
+            #    np.append(True, is_background[0:-1])))[0]
+            #end = np.where(np.logical_and(
+            #    np.logical_not(is_background),
+            #    np.append(is_background[1:], True)))[0] + 1
+            start, end = detect_consecutive_false(is_background)
             return [label[:, a:b] for a,b in zip(start, end)]
         letters = [split_to_letters(label) for label in labels]
         
@@ -133,22 +132,24 @@ class Yaxis:
         # identify rows of labels 
         frac = np.mean(is_beige, axis=1)
         is_bg_row = (frac >= thres_frac)
-        row1 = np.where(np.logical_and(
-            np.logical_not(is_bg_row),
-            np.append(True, is_bg_row[0:-1])))[0]
-        row2 = np.where(np.logical_and(
-            np.logical_not(is_bg_row),
-                np.append(is_bg_row[1:], True)))[0] + 1
+        #row1 = np.where(np.logical_and(
+        #    np.logical_not(is_bg_row),
+        #    np.append(True, is_bg_row[0:-1])))[0]
+        #row2 = np.where(np.logical_and(
+        #    np.logical_not(is_bg_row),
+        #        np.append(is_bg_row[1:], True)))[0] + 1
+        row1, row2 = detect_consecutive_false(is_bg_row)
         
         def split_letters(i1, i2):
             frac = np.mean(is_beige[i1:i2], axis=0)
             is_bg_col = (frac >= thres_frac)
-            start = np.where(np.logical_and(
-                np.logical_not(is_bg_col),
-                np.append(True, is_bg_col[0:-1])))[0]
-            end = np.where(np.logical_and(
-                np.logical_not(is_bg_col),
-                np.append(is_bg_col[1:], True)))[0] + 1
+            #start = np.where(np.logical_and(
+            #    np.logical_not(is_bg_col),
+            #    np.append(True, is_bg_col[0:-1])))[0]
+            #end = np.where(np.logical_and(
+            #    np.logical_not(is_bg_col),
+            #    np.append(is_bg_col[1:], True)))[0] + 1
+            start, end = detect_consecutive_false(is_bg_col)
             return [image[i1:i2, a:b] for a,b in zip(start, end)]
 
         out = [split_letters(a,b) for a,b in zip(row1, row2)]

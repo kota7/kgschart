@@ -69,7 +69,7 @@ class KgsChart:
         thres_dist = 0.05
 
         # find white rows
-        dist = rgb_dist(im[im.shape[0]//2], WHITE)
+        dist = rgb_dist(im[:, im.shape[1]//2], WHITE)
         white_rows = (dist < thres_dist)
         i1,i2 = detect_consecutive_true(white_rows)
         # if there is a graph, there must be two white rows
@@ -78,7 +78,7 @@ class KgsChart:
         bottom = i1[1]
 
         # find white cols
-        dist = rgb_dist(im[:, im.shape[1]//2], WHITE)
+        dist = rgb_dist(im[im.shape[0]//2], WHITE)
         white_cols = (dist < thres_dist)
         j1,j2 = detect_consecutive_true(white_cols)
         # if there is a graph, there must be two white rows
@@ -122,15 +122,38 @@ class KgsChart:
         """
         plt.imshow(self.image)
         plt.show()
+    
+    def plot_parts(self):
+        plt.subplot(221)
+        plt.plot(1)
+        
+        if self.yaxis is not None:
+            plt.subplot(2,2,2)
+            self.yaxis.plot(False)
+        if self.graph is not None:
+            plt.subplot(2,2,1)
+            self.graph.plot(False)
+        plt.show()
 
 
 if __name__ == '__main__':
+    import sys
+
+    # quick test code below (to be deleted later)
+    print('***********************')
+    k = KgsChart('../data/images/DrQuantum-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
+    #plt.plot(-k.line_index)
+    #plt.show()
+    k.plot_parts()
+    sys.exit()
+
     print('***********************')
     k = KgsChart('../data/images/rpablo007-ja_JP.png')
     print('TBLR', k.tblr)
     k.parse()
 
-    # quick test code below (to be deleted later)
     print('***********************')
     k = KgsChart('../data/images/kotakun-ja_JP.png')
     print('TBLR', k.tblr)

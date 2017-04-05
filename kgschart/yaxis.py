@@ -14,10 +14,10 @@ class Yaxis:
     def __init__(self, image):
         self.image = image
     
-    def display(self):
+    def plot(self, show=True):
         if self.image is None: return
-        plt.imshow(image)
-        plot.show()
+        plt.imshow(self.image)
+        if show: plt.show()
 
 
     def get_label_range(self):

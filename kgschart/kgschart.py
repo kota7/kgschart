@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 from colors import BLACK, WHITE, BEIGE, GRAY, GREEN
-from utils import rgb_dist
+from utils import rgb_dist, detect_consecutive_true
 from yaxis import Yaxis
 from caption import Caption
 from graph import Graph
@@ -63,97 +63,28 @@ class KgsChart:
         """
         if self.image is None: return [0,0,0,0]
 
-        # define im to reduce writing
         im = self.image
-
-        def mostly_black_or_gray(arr, thres_dist, theres_frac):
-            dist_from_black = rgb_dist(arr, BLACK)
-            dist_from_gray  = rgb_dist(arr, GRAY)
-            dist = np.minimum(dist_from_black, dist_from_gray)
-            frac = np.mean(dist < thres_dist)
-            return frac >= thres_frac
-
-        # threshold for color distance and fraction
-        # define here because they are used repeatedly
-        thres_dist = 0.2
-        thres_frac = 0.8
-
-        # check if the middle of the image is mostly black or gray
-        # if not, then there is no graph
-        mid_row = im.shape[0]//2
-        if not mostly_black_or_gray(im[mid_row], thres_dist, thres_frac):
-            # image has no graph
-            return [0,0,0,0]
         
-        # binary search to find top
-        # top is largest i such that
-        # im[i] is mostly black or gray 
-        # we use for-loop instead of while true since
-        # we know that n is below 1000, so 2^10 would be enough
-        i0 = 0
-        i1 = mid_row
-        for _ in range(10): 
-            if i0 >= i1:
-                top = i1
-                break
-            mid = (i0+i1)//2
-            if mostly_black_or_gray(im[mid], thres_dist, thres_frac):
-                i1 = mid
-            else:
-                i0 = mid + 1
-        
-        # binary search to find bottom
-        # bottom is smallest i such that
-        # im[i] is not mostly black or gray
-        i0 = mid_row
-        i1 = im.shape[0]
-        for _ in range(10):
-            if i0 >= i1:
-                bottom = i1
-                break
-            mid = (i0+i1)//2
-            if mostly_black_or_gray(im[mid], thres_dist, thres_frac):
-                i0 = mid + 1
-            else:
-                i1 = mid
+        # strategy: find a box white 
+        thres_dist = 0.05
 
-        # before starting the search for right and left,
-        # make sure that mid col is mostly black
-        # otherwise, regard there is no graph
-        mid_col = im.shape[1]//2
-        if not mostly_black_or_gray(im[:,mid_col], thres_dist, thres_frac):
-            # image has no graph
-            return [0,0,0,0]
+        # find white rows
+        dist = rgb_dist(im[im.shape[0]//2], WHITE)
+        white_rows = (dist < thres_dist)
+        i1,i2 = detect_consecutive_true(white_rows)
+        # if there is a graph, there must be two white rows
+        if len(i1) != 2: return [0,0,0,0]
+        top = i2[0]
+        bottom = i1[1]
 
-        # binary search for left,
-        # which is the smallest j such that
-        # im[:,j] is mostly black or gray
-        j0 = 0
-        j1 = mid_col
-        for _ in range(10):
-            if j0 >= j1:
-                left = j1
-                break
-            mid = (j0+j1)//2
-            if mostly_black_or_gray(im[:,mid], thres_dist, thres_frac):
-                j1 = mid
-            else:
-                j0 = mid + 1
-
-        # binary search for right,
-        # i.e. the smallest j such that
-        # im[:,j] is not mostly black or gray
-        j0 = mid_col 
-        j1 = im.shape[1]
-        for _ in range(10):
-            if j0 >= j1:
-                right = j1
-                break
-            mid = (j0+j1)//2
-            if mostly_black_or_gray(im[:,mid], thres_dist, thres_frac):
-                j0 = mid + 1
-            else:
-                j1 = mid
+        # find white cols
+        dist = rgb_dist(im[:, im.shape[1]//2], WHITE)
+        white_cols = (dist < thres_dist)
+        j1,j2 = detect_consecutive_true(white_cols)
+        # if there is a graph, there must be two white rows
+        if len(j1) != 2: return [0,0,0,0]
+        left = j2[0]
+        right = j1[1]
 
         return [top, bottom, left, right]
 

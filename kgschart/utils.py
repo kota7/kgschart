@@ -50,3 +50,29 @@ def to_gray(arr, white, black):
     return out
     
     
+def detect_consecutive_true(arr):
+    """
+    returns the tuple of two index vectors, (start, end) 
+    where for each pair from (i,j) from (start,end), 
+    arr[i:j] are all true.
+
+    Args
+        arr: 1d array of logicals
+    
+    Returns
+        2-tuple of integer arrays of same size
+    """
+    if len(arr.shape) != 1:
+        print("array must be 1-dimensional")
+        raise
+    if arr.shape[0] < 1: return []
+    start = np.where(np.logical_and(
+        arr, np.logical_not(np.append(False, arr[0:-1]))))[0]
+    end = np.where(np.logical_and(
+        arr, np.logical_not(np.append(arr[1:], False))))[0] + 1
+    if len(start) != len(end):
+        print("unexpected error")
+        raise
+    return (start, end)
+
+

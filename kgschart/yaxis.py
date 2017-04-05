@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*- 
 
+import numpy as np
+from matplotlib import pyplot as plt
+
 from colors import BEIGE, BLACK, GRAY
 from utils import rgb_dist, to_gray
-import numpy as np
 
 
 class Yaxis:
@@ -12,6 +14,11 @@ class Yaxis:
     def __init__(self, image):
         self.image = image
     
+    def display(self):
+        if self.image is None: return
+        plt.imshow(image)
+        plot.show()
+
 
     def get_label_range(self):
         """

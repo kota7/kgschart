@@ -178,12 +178,13 @@ class KgsChart:
             step = (bottom-top)//(ngrids+1)
             positions = list(range(top, bottom+1, step)) 
         print('positions', positions)
-        if self.yaxis is not None:
-            letters = self.yaxis.extract_letters()
-            for l in letters:
-                plt.imshow(l, cmap='gray')
-                plt.show()
     
+
+    def extract_label_letters(self):
+        if self.yaxis is None: return []
+        return self.yaxis.extract_letters()
+
+
     def display(self):
         """
         Display original image
@@ -192,37 +193,45 @@ class KgsChart:
         plt.show()
 
 
-
-# quick test code below (to be deleted later)
-print('***********************')
-k = KgsChart('../data/images/kotakun-ja_JP.png')
-print('TBLR', k.tblr)
-k.parse()
-#plt.plot(-k.line_index)
-#plt.show()
-import sys
-sys.exit()
-
-#k.display()
-
-print('***********************')
-k = KgsChart('../data/images/Quinton-ja_JP.png')
-print('TBLR', k.tblr)
-k.parse()
-
-print('***********************')
-k = KgsChart('../data/images/Zen19L-ja_JP.png')
-print('TBLR', k.tblr)
-k.parse()
-#plt.plot(-k.line_index)
-#plt.show()
+if __name__ == '__main__':
+    print('***********************')
+    k = KgsChart('../data/images/rpablo007-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
 
 
-print('***********************')
-k = KgsChart('../data/images/aleksandra-ja_JP.png')
-print('TBLR', k.tblr)
-k.parse()
-#plt.plot(-k.line_index)
-#plt.show()
+    import sys
+    sys.exit()
+    # quick test code below (to be deleted later)
+    print('***********************')
+    k = KgsChart('../data/images/kotakun-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
+    #plt.plot(-k.line_index)
+    #plt.show()
+    # import sys
+    # sys.exit()
+
+    #k.display()
+
+    print('***********************')
+    k = KgsChart('../data/images/Quinton-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
+
+    print('***********************')
+    k = KgsChart('../data/images/Zen19L-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
+    #plt.plot(-k.line_index)
+    #plt.show()
+
+
+    print('***********************')
+    k = KgsChart('../data/images/aleksandra-ja_JP.png')
+    print('TBLR', k.tblr)
+    k.parse()
+    #plt.plot(-k.line_index)
+    #plt.show()
 
 

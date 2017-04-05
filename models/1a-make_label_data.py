@@ -15,44 +15,46 @@ sys.path.append(module_path)
 from kgschart import KgsChart
 from utils import pad_image
 
+
+
+def save_x(data_dir, suffix, target_nrow=16, target_ncol=12):
+    # extract label letters from each image file
+    letters = []
+    for f in glob(os.path.join(data_dir, '*.png')):
+        print(os.path.basename(f), '...')
+        k = KgsChart(f)
+        tmp = k.extract_label_letters()
+        letters += tmp
+
+    # max size of images
+    maxi = 0
+    maxj = 0
+    for l in letters:
+        maxi = max(maxi, l.shape[0])
+        maxj = max(maxj, l.shape[1])
+
+    out = []
+    for l in letters:
+        padded = pad_image(l, target_nrow, target_ncol, 1.0)
+        #plt.subplot(121)
+        #plt.imshow(l, cmap='gray')
+        #plt.subplot(122)
+        #plt.imshow(padded, cmap='gray')
+        #plt.show() 
+        out.append(padded)
+
+    out = [o.reshape(1, o.shape[0], o.shape[1]) for o in out]
+    out = np.vstack(out)
+
+
+    outdir = os.path.join(proj_root, 'data/labels/')
+    if not os.path.isdir(outdir): os.makedirs(outdir)
+    outname = os.path.join(outdir, 'X%s.npy' % suffix)
+    np.save(outname, out)
+    print(outname, 'saved.\nDONE')
+
+
 # data path
-data_dir = os.path.join(proj_root, 'data/images')
-
-# extract label letters from each image file
-letters = []
-for f in glob(os.path.join(data_dir, '*.png')):
-    k = KgsChart(f)
-    tmp = k.extract_label_letters()
-    letters += tmp
-
-# max size of images
-maxi = 0
-maxj = 0
-for l in letters:
-    maxi = max(maxi, l.shape[0])
-    maxj = max(maxj, l.shape[1])
-
-# add extra 2 pixels each 
-target_nrow = maxi + 4 
-target_ncol = maxj + 4
-out = []
-for l in letters:
-    padded = pad_image(l, target_nrow, target_ncol, 1.0)
-    #plt.subplot(121)
-    #plt.imshow(l, cmap='gray')
-    #plt.subplot(122)
-    #plt.imshow(padded, cmap='gray')
-    #plt.show() 
-    out.append(padded)
-
-out = [o.reshape(1, o.shape[0], o.shape[1]) for o in out]
-out = np.vstack(out)
-
-
-outdir = os.path.join(proj_root, 'data/labels/')
-if not os.path.isdir(outdir): os.makedirs(outdir)
-np.save(os.path.join(outdir, 'X.npy'), out)
-
-
-
+save_x(os.path.join(proj_root, 'data/images/batch1'), '-1')
+save_x(os.path.join(proj_root, 'data/images/batch2'), '-2')
 

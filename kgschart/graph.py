@@ -19,9 +19,9 @@ class Graph:
         if im is None or im.shape[0] < 1 or im.shape[1] < 1: 
             return None 
 
-        thres_dist = 0.15
+        thres_dist = 0.2
         thres_frac = 0.9
-        mostly_gray = (rgb_dist(im, GRAY) < 0.15)
+        mostly_gray = (rgb_dist(im, GRAY) < thres_dist)
         frac = np.mean(mostly_gray, axis=1)
         gray_index = (frac > thres_frac).nonzero()[0]
 

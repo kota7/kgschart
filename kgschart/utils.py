@@ -22,3 +22,31 @@ def rgb_dist(arr, col):
     tmp = np.power(tmp, 0.5)
     return tmp/255.0
 
+
+
+def to_gray(arr, white, black):
+    """
+    Convert RGB color array in to gray scale, 
+    using specified white and black as the two polars
+    
+    Args
+       arr:   numpy array of shape (nrow, ncol, 3)
+       white: numpy array of size 3, benchmark for the largest color
+       black: numpy array of size 3, benchmark for the smallest color
+    
+    Returns
+        numpy array of shape (nrow, ncol), each element is the degree of 
+        the color relative to white and black
+    """
+    
+    # weight by [2,4,3]: c.f. https://en.wikipedia.org/wiki/Color_difference
+    weights = np.power(np.array([2.0/9, 4.0/9, 3.0/9]), 0.5)
+    white2 = white * weights
+    black2 = black * weights
+    arr2 = arr * weights
+    
+    denom = float(np.dot(black2 - white2, black2 - white2))
+    out = np.dot(arr2 - black2, white2 - black2) / denom
+    return out
+    
+    

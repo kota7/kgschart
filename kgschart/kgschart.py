@@ -116,22 +116,19 @@ class KgsChart:
         return self.yaxis.extract_letters()
 
 
-    def display(self):
-        """
-        Display original image
-        """
-        plt.imshow(self.image)
-        plt.show()
     
-    def plot_parts(self):
+    def plot(self):
         plt.subplot(221)
         plt.plot(1)
         
+        if self.image is not None:
+            plt.subplot(221)
+            plt.imshow(self.image)
         if self.yaxis is not None:
-            plt.subplot(2,2,2)
+            plt.subplot(222)
             self.yaxis.plot(False)
         if self.graph is not None:
-            plt.subplot(2,2,1)
+            plt.subplot(223)
             self.graph.plot(False)
         plt.show()
 
@@ -146,7 +143,7 @@ if __name__ == '__main__':
     k.parse()
     #plt.plot(-k.line_index)
     #plt.show()
-    k.plot_parts()
+    k.plot()
     sys.exit()
 
     print('***********************')

@@ -80,4 +80,37 @@ def detect_consecutive_true(arr):
     return (start, end)
 
 
+def pad_image(arr, target_rows, target_cols, value):
+    """
+    pad a certain value to arr so that the size becomes
+    target_rows and target_cols
+    raise error if the size of arr is smaller than the target
+    
+    Args
+      arr: numpy array of shape (nrow, ncol)
+      target_rows: desired vertical size
+      target_cols: desired horizontal size
+      value: value to be padded
+    
+    Returns
+      numpy array
+    """
+    rows_toadd = target_rows - arr.shape[0]
+    if rows_toadd < 0: 
+        print("array is already larger than target rows")
+        raise
+    row_added1 = rows_toadd // 2
+    row_added2 = rows_toadd - row_added1
+    
+    cols_toadd = target_cols - arr.shape[1]
+    if cols_toadd < 0:
+        print("array is already larger than target cols")
+        raise
+    col_added1 = cols_toadd // 2
+    col_added2 = cols_toadd - col_added1
+    
+    out = np.pad(arr, ((row_added1, row_added2), (col_added1, col_added2)), 
+                 mode='constant', constant_values=value)
+    return out
+    
 

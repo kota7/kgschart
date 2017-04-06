@@ -27,10 +27,14 @@ Y = np.concatenate((Y1, Y2))
 print(X.shape)
 print(Y.shape)
 
-X_train, X_test, Y_train, Y_test  = train_test_split(
-        X, Y, test_size = 0.25, stratify = Y)
+X_train, X_test, Y_train, Y_test = train_test_split(
+        X, Y, test_size=0.5, stratify=Y, random_state=87)
+
 
 print(pd.Series(Y_train).value_counts())
 print(pd.Series(Y_test).value_counts())
+
+
+
 
 

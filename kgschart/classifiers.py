@@ -10,7 +10,7 @@ from utils import pad_image
 
 
 
-class PadAndFlatten:
+class PadStackFlatten:
     def __init__(self, target_shape):
        if len(target_shape) != 2: 
            print('target shape must be length 2')
@@ -21,7 +21,8 @@ class PadAndFlatten:
         return self
 
     def transform(self, X, y=None):
-        out = [pad_image(a, self.target_shape[0], 
+        out = [pad_image(a, \
+                         self.target_shape[0], \
                          self.target_shape[1], 1.0) \
                for a in X]
         out = np.expand_dims(out, axis=0)
@@ -46,7 +47,7 @@ class LabelClassifier:
 
         # predictor pipeline
         self.predictor = Pipeline([
-          ('prep', PadAndFlatten(self.input_shape)),
+          ('prep', PadStackFlatten(self.input_shape)),
           ('predict', model)
         ]) 
 
@@ -63,7 +64,9 @@ class LabelClassifier:
         """
         if type(X) != list: X = [X]
         for a in X: print(a.shape)
-        return self.predictor.predict(X)
+        out = self.predictor.predict(X)
+        out = ''.join(out)
+        return out
 
 
 

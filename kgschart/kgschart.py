@@ -118,7 +118,7 @@ class KgsChart:
 
         # obtain the rank range from yaxis
         self.set_rank_range(self.yaxis.get_rank_range(positions)) 
-        print('ran range', self.rank_range)
+        print('rank range', self.rank_range)
     
 
     def extract_label_letters(self):
@@ -161,3 +161,8 @@ if __name__=='__main__':
     k = KgsChart('../data/images/batch1/kotakun-ja_JP.png')
     k.parse()
 
+    k = KgsChart('../data/images/batch1/Zen19L-ja_JP.png')
+    k.parse()
+
+    k = KgsChart('../data/images/batch1/hirabot-ja_JP.png')
+    k.parse()

@@ -16,8 +16,7 @@ def input_y(xfile, yfile, resume=True):
     if os.path.isfile(yfile) and resume:
         Y = np.load(yfile)
     else:
-        Y = np.chararray(int(X.shape[0])) 
-        Y[:] = ''
+        Y = [''] * X.shape[0]
         
     i = 0
     plt.plot(1)

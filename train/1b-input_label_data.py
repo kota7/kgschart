@@ -13,9 +13,8 @@ proj_root = os.path.abspath(os.path.join(os.path.dirname( \
 
 def input_y(xfile):
     X = np.load(xfile)
-
-    Y = np.chararray(int(X.shape[0])) 
-    Y[:] = ''
+    Y = [''] * X.shape[0])
+    
     i = 0
     plt.plot(1)
     plt.show(block = False)

@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 from colors import BEIGE, BLACK, GRAY
 from utils import rgb_dist, to_gray, detect_consecutive_false
+from utils import str_to_num_rank, num_to_str_rank
 from classifiers import LabelClassifier
 
 
@@ -34,19 +35,41 @@ class Yaxis:
           tuple of strings such as (2k, 1d)
         """
         label_list = self.get_label_list(positions)
-        #print(label_list)
+        
+        ranks = ['' if l is None else self.classifier.predict(l) \
+                 for l in label_list]
 
-        #nr = len(label_list)
-        #nc = max([len(l) for l in label_list])
-        #for i in range(len(label_list)):
-        #    if label_list[i] is None: continue
-        #    for j in range(len(label_list[i])):
-        #        plt.subplot(nr, nc, nc*i + j+1)
-        #        plt.imshow(label_list[i][j], cmap='gray')
-        #plt.show()
-        out = [self.classifier.predict(l) for l in label_list]
+        # look for the max rank from the top
+        max_rank = None
+        i = 0
+        while i < len(ranks):
+            if ranks[i] == '':
+                i += 1
+                continue
+            n = str_to_num_rank(ranks[i])
+            if not np.isnan(n):
+                max_rank = num_to_str_rank(n+i)
+                break
+            i += 1
+        if max_rank is None: return ()
 
-        return out 
+        # look for the min rank from the bottom
+        min_rank = None
+        i = 0
+        while i < len(ranks):
+            j = len(ranks)-i-1
+            if ranks[j] == '':
+                i += 1
+                continue
+            n = str_to_num_rank(ranks[j])
+            if not np.isnan(n):
+                min_rank = num_to_str_rank(n-i)
+                break
+            i += 1
+        if min_rank is None: return ()
+
+        return (min_rank, max_rank)
+         
 
 
     def get_label_list(self, positions):

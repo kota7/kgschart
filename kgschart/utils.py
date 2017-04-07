@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import numpy as np
+import re
 
 def rgb_dist(arr, col):
     """
@@ -113,4 +114,22 @@ def pad_image(arr, target_rows, target_cols, value):
                  mode='constant', constant_values=value)
     return out
     
+
+
+
+def str_to_num_rank(str_rank):
+    str_rank = str_rank.lower().strip()
+    r = re.search(r'^(\d)([dk])$', str_rank)
+    if r is None: return np.nan
+    n = int(r.group(1))
+    t = r.group(2)
+    out = -n if t == 'k' else n-1
+    return out
+
+def num_to_str_rank(num):
+    out = str(-num) + 'k' if num < 0 else str(num+1) + 'd'
+    return out
+
+
+
 

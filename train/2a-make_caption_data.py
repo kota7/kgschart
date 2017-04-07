@@ -18,7 +18,7 @@ from utils import pad_image
 
 
 def save_x(data_dir, suffix, out_dir, 
-           target_nrow=16, target_ncol=12):
+           target_nrow=18, target_ncol=15):
     # extract label letters from each image file
     letters = []
     for f in glob(os.path.join(data_dir, '*.png')):
@@ -26,7 +26,11 @@ def save_x(data_dir, suffix, out_dir,
         k = KgsChart(f)
         tmp = k.extract_caption_letters()
         letters += tmp
-    
+        
+        for l in letters:
+            plt.imshow(l, cmap='gray')
+            plt.show()
+                    
     # remove all letters target col size
     letters = list(filter(lambda l: l.shape[1] <= target_ncol, letters))
     
@@ -63,6 +67,6 @@ def save_x(data_dir, suffix, out_dir,
 # data path
 save_x(os.path.join(proj_root, 'data/images/batch1'), '-1', 
        os.path.join(proj_root, 'data/caption'))
-#save_x(os.path.join(proj_root, 'data/images/batch2'), '-2', 
-#       os.path.join(proj_root, 'data/caption'))
+save_x(os.path.join(proj_root, 'data/images/batch2'), '-2', 
+       os.path.join(proj_root, 'data/caption'))
 

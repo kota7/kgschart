@@ -40,6 +40,11 @@ class KgsChart:
     yaxis = None
 
 
+    # horizontal and vertical range
+    rank_range = ()  # e.g. (2k, 3d)
+    time_range = ()  # e.g. (2013-04-03, 2014-05-12)
+
+
     def __init__(self, imagefile):
         if  not os.path.exists(imagefile): 
             raise IOError('No such file exists: "%s"' % imagefile)
@@ -54,7 +59,6 @@ class KgsChart:
             self.graph = Graph(im[t:b, l:r])
             self.yaxis = Yaxis(im[:, 0:(l-1)]) 
             self.caption = Caption(im[0:(t-1), l:r])
-            
 
     
     def detect_graph_area(self):
@@ -110,6 +114,11 @@ class KgsChart:
             step = (bottom-top)//(ngrids+1)
             positions = list(range(top, bottom+1, step)) 
         print('positions', positions)
+
+
+        # obtain the rank range from yaxis
+        self.set_rank_range(self.yaxis.get_rank_range(positions)) 
+        print('ran range', self.rank_range)
     
 
     def extract_label_letters(self):
@@ -119,6 +128,12 @@ class KgsChart:
     def extract_caption_letters(self):
         if self.caption is None: return []
         return self.caption.extract_letters()
+
+    def set_time_range(self, time_range):
+        self.time_range = time_range
+    
+    def set_rank_range(self, rank_range):
+        self.rank_range = rank_range
 
     
     def plot(self):
@@ -140,4 +155,9 @@ class KgsChart:
         plt.show()
 
 
+
+
+if __name__=='__main__':
+    k = KgsChart('../data/images/batch1/kotakun-ja_JP.png')
+    k.parse()
 

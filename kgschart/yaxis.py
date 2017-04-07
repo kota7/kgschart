@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 
 from colors import BEIGE, BLACK, GRAY
 from utils import rgb_dist, to_gray, detect_consecutive_false
+from classifiers import LabelClassifier
 
 
 class Yaxis:
@@ -13,6 +14,8 @@ class Yaxis:
 
     def __init__(self, image):
         self.image = image
+        self.classifier = LabelClassifier()
+
     
     def plot(self, show=True):
         if self.image is None: return
@@ -20,23 +23,38 @@ class Yaxis:
         if show: plt.show()
 
 
-    def get_label_range(self):
+    def get_rank_range(self, positions):
         """
         Returns the min and max of y-axis labels
+
+        Args
+          positions: expected indices of labels. 
 
         Returns
           tuple of strings such as (2k, 1d)
         """
-        return () 
+        label_list = self.get_label_list(positions)
+        #print(label_list)
+
+        #nr = len(label_list)
+        #nc = max([len(l) for l in label_list])
+        #for i in range(len(label_list)):
+        #    if label_list[i] is None: continue
+        #    for j in range(len(label_list[i])):
+        #        plt.subplot(nr, nc, nc*i + j+1)
+        #        plt.imshow(label_list[i][j], cmap='gray')
+        #plt.show()
+        out = [self.classifier.predict(l) for l in label_list]
+
+        return out 
 
 
-    def get_label_arrays(self, positions):
+    def get_label_list(self, positions):
         """
         make Y-axis labal data
 
         Args
-          positions: expected indices of labels. If provided,
-                     the search becomes more efficient
+          positions: expected indices of labels. 
 
         Returns
           list of (list of 2d-arrays) or None, where (i,j) element indicates

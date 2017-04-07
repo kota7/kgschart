@@ -34,7 +34,7 @@ class Caption:
         if image.size ==0: return []
 
         thres_dist = 0.1
-        thres_frac = 0.95
+        thres_frac = 1.0 
 
         dist = rgb_dist(image, BEIGE)
         is_beige = (dist < thres_dist)

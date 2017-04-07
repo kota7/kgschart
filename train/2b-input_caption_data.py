@@ -48,5 +48,4 @@ def input_y(xfile, yfile, resume=True):
 
 
 datadir = os.path.join(proj_root, 'data/caption/')
-input_y(os.path.join(datadir, 'X-1.npy'), os.path.join(datadir, 'Y-1.npy'))
-#input_y(os.path.join(datadir, 'X-2.npy'))
+input_y(os.path.join(datadir, 'X-ja.npy'), os.path.join(datadir, 'Y-ja.npy'))

@@ -30,9 +30,6 @@ def check(xfile, yfile):
             a.text(0, 0, Y[index[i]], bbox={'facecolor':"wheat"})
             i += 1
         plt.show()
-        
-check(os.path.join(proj_root, 'data/labels/X-1.npy'), \
-      os.path.join(proj_root, 'data/labels/Y-1.npy')) 
-      
-check(os.path.join(proj_root, 'data/labels/X-2.npy'), \
-      os.path.join(proj_root, 'data/labels/Y-2.npy')) 
+              
+check(os.path.join(proj_root, 'data/caption/X-ja.npy'), \
+      os.path.join(proj_root, 'data/caption/Y-ja.npy')) 

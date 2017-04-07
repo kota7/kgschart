@@ -53,7 +53,7 @@ class KgsChart:
         if b-t > 0 and r-l > 0:
             self.graph = Graph(im[t:b, l:r])
             self.yaxis = Yaxis(im[:, 0:(l-1)]) 
-            self.caption = Caption(im[0:t, l:r])
+            self.caption = Caption(im[0:(t-1), l:r])
             
 
     
@@ -116,6 +116,9 @@ class KgsChart:
         if self.yaxis is None: return []
         return self.yaxis.extract_letters()
 
+    def extract_caption_letters(self):
+        if self.caption is None: return []
+        return self.caption.extract_letters()
 
     
     def plot(self):

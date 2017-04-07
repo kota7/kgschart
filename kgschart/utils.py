@@ -119,7 +119,7 @@ def pad_image(arr, target_rows, target_cols, value):
 
 def str_to_num_rank(str_rank):
     str_rank = str_rank.lower().strip()
-    r = re.search(r'^(\d)([dk])$', str_rank)
+    r = re.search(r'^(\d+)([dk])$', str_rank)
     if r is None: return np.nan
     n = int(r.group(1))
     t = r.group(2)

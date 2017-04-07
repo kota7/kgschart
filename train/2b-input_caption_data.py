@@ -11,7 +11,7 @@ proj_root = os.path.abspath(os.path.join(os.path.dirname( \
     os.path.realpath(__file__)), '../'))
 
 
-def input_y(xfile, yfile, resume=True):
+def input_y(xfile, yfile, resume=False):
     X = np.load(xfile)
     if os.path.isfile(yfile) and resume:
         Y = np.load(yfile)
@@ -35,7 +35,10 @@ def input_y(xfile, yfile, resume=True):
             ans = input('what is this? >')
             break
         if ans == 'back':
-            i -= 1
+            if i > 0:
+                Y[i-1] = ''
+                i -= 1
+            continue
         elif ans in ['break', 'exit']:
             break
         else:

@@ -80,7 +80,6 @@ def save_x(filelist, outname, target_shape=None):
     # remove duplicate, save input time
     out = remove_duplicates(out)
     print('output shape (w/o dup)  = ', out.shape)
-    
 
     out_dir = os.path.dirname(outname)
     if not os.path.isdir(out_dir): os.makedirs(out_dir)
@@ -91,6 +90,6 @@ def save_x(filelist, outname, target_shape=None):
 # data path
 filelist = [f for f in glob(os.path.join(proj_root, 'data/images/batch1/*.png'))] + \
            [f for f in glob(os.path.join(proj_root, 'data/images/batch2/*.png'))]
-save_x(filelist, os.path.join(proj_root, 'data/caption/X-ja.npy'), (17, 14))
+save_x(filelist, os.path.join(proj_root, 'data/caption/X-ja.npy'), None)
 
 

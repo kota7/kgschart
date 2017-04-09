@@ -88,8 +88,8 @@ def save_x(filelist, outname, target_shape=None):
 
 
 # data path
-filelist = [f for f in glob(os.path.join(proj_root, 'data/images/batch1/*.png'))] + \
-           [f for f in glob(os.path.join(proj_root, 'data/images/batch2/*.png'))]
+filelist = [f for f in glob(os.path.join(proj_root, 'data/images/batch1-ja/*.png'))] + \
+           [f for f in glob(os.path.join(proj_root, 'data/images/batch2-ja/*.png'))]
 save_x(filelist, os.path.join(proj_root, 'data/caption/X-ja.npy'), None)
 
 

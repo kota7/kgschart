@@ -8,10 +8,7 @@ from matplotlib import pyplot as plt
 
 from colors import BLACK, WHITE, BEIGE, GRAY, GREEN
 from utils import rgb_dist, detect_consecutive_true
-from yaxis import Yaxis
-from caption import Caption
-from graph import Graph
-
+from parts import Yaxis, Caption, Graph
 
 
 
@@ -158,11 +155,11 @@ class KgsChart:
 
 
 if __name__=='__main__':
-    k = KgsChart('../data/images/batch1/kotakun-ja_JP.png')
+    k = KgsChart('../data/images/batch1-ja/kotakun-ja_JP.png')
     k.parse()
 
-    k = KgsChart('../data/images/batch1/Zen19L-ja_JP.png')
+    k = KgsChart('../data/images/batch1-ja/Zen19L-ja_JP.png')
     k.parse()
 
-    k = KgsChart('../data/images/batch1/hirabot-ja_JP.png')
+    k = KgsChart('../data/images/batch1-ja/hirabot-ja_JP.png')
     k.parse()

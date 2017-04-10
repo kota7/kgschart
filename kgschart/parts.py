@@ -1,12 +1,137 @@
 # -*- coding: utf-8 -*- 
 
+
 import numpy as np
 from matplotlib import pyplot as plt
 
-from colors import BEIGE, BLACK, GRAY
-from utils import rgb_dist, to_gray, detect_consecutive_false
+from utils import rgb_dist, detect_consecutive_false, to_gray
 from utils import str_to_num_rank, num_to_str_rank
+from colors import BEIGE, GRAY, GREEN, BLACK
 from classifiers import LabelClassifier
+
+
+class Caption:
+    image = None
+    
+    def __init__(self, image):
+        self.image = image
+        
+    def plot(self, show=True):
+        if self.image is None: return
+        plt.imshow(self.image)
+        if show: plt.show()
+
+    def extract_letters(self):
+        """
+        extract all sub images of letters
+
+        Returns
+          list of numpy arrays of shape(nrow,ncol)
+          each element is an image array.
+          if asgray: each element is (nrow, ncol) shape
+          otherwise: each element is (nrow, ncol, channel) shape
+        """
+        image = self.image
+        if image is None: return []
+        if image.size ==0: return []
+
+        thres_dist = 0.3
+        thres_frac = 1.0 
+
+        dist = rgb_dist(image, BEIGE)
+        is_beige = (dist < thres_dist)
+
+        # find rows that have non-background 
+        not_bg_row = (np.mean(is_beige, axis=1) < thres_frac)
+        if not np.any(not_bg_row): return []  # all background
+        # the first and last index of non-background
+        index = not_bg_row.nonzero()[0]
+        i1 = index[0]
+        i2 = index[-1]
+        
+        # split into letters  
+        frac = np.mean(is_beige[i1:(i2+1)], axis=0)
+        is_bg_col = (frac >= thres_frac)
+        start, end = detect_consecutive_false(is_bg_col)
+
+        out = [image[i1:(i2+1), a:b] for a,b in zip(start, end)]
+        
+        # to gray scale
+        for i in range(len(out)):
+            out[i] = to_gray(out[i], BEIGE, GRAY)
+        
+        return out
+        
+
+
+
+
+class Graph:
+    image = None
+    def __init__(self, image):
+        self.image = image
+    
+    def plot(self, show=True):
+        if self.image is None: return
+        plt.imshow(self.image)
+        if show: plt.show()
+         
+    def get_num_grids(self):
+        """
+        Detect the number of gird lines
+        """
+        im = self.image
+        if im is None or im.shape[0] < 1 or im.shape[1] < 1: 
+            return None 
+
+        thres_dist = 0.2
+        thres_frac = 0.9
+        mostly_gray = (rgb_dist(im, GRAY) < thres_dist)
+        frac = np.mean(mostly_gray, axis=1)
+        gray_index = (frac > thres_frac).nonzero()[0]
+
+        if len(gray_index) == 0: return 0
+        return 1 + np.sum(np.diff(gray_index) > 1)
+
+
+    def get_line_index(self):
+        """
+        Detect line position in the graph image
+
+        Returns
+          numpy array of the same length as the image's width
+        """
+
+        im = self.image
+        if im is None or im.shape[0] < 1 or im.shape[1] < 1: 
+            return np.empty(0) 
+
+        
+        # compute distance from green, black, gray and find the
+        # cells that are closest to green
+        dist_green = rgb_dist(im, GREEN)
+        thres_dist = 0.35
+
+        # change distance of cells for enough from green to 1
+        # later, if colwise minimum is 1, 
+        # then the column is regarded as having no line
+        dist_green[dist_green > thres_dist] = 1.0  
+
+        min_dist = np.min(dist_green, axis=0)
+        has_line = np.where(min_dist < 1.0)[0]
+
+        # initialize
+        out = np.empty(im.shape[1]) 
+        out[:] = np.nan
+        for j in has_line:
+            min_index = np.where(dist_green[:,j] == min_dist[j])[0]
+            out[j] = np.mean(min_index)
+            #out[j] = np.average(np.arange(im.shape[0]),\
+            #                    weights=1.0-dist_green[:,j])
+
+        return out
+
+
 
 
 class Yaxis:
@@ -203,4 +328,5 @@ class Yaxis:
         return out
 
         
+
 

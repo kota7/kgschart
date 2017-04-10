@@ -11,9 +11,10 @@ import numpy as np
 # include kgschart directory to the python path
 proj_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../'))
 module_path = os.path.join(proj_root, 'kgschart')
-sys.path.append(module_path)
-from kgschart import KgsChart
+sys.path.insert(0, module_path)
 from utils import pad_image
+import parser
+from parser import KgsChart
 
 
 
@@ -55,6 +56,6 @@ def save_x(data_dir, suffix, target_nrow=16, target_ncol=12):
 
 
 # data path
-save_x(os.path.join(proj_root, 'data/images/batch1'), '-1')
-save_x(os.path.join(proj_root, 'data/images/batch2'), '-2')
+save_x(os.path.join(proj_root, 'data/images/batch1-ja'), '-1')
+save_x(os.path.join(proj_root, 'data/images/batch2-ja'), '-2')
 

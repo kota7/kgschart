@@ -55,7 +55,7 @@ def save_x(filelist, outname, target_shape=None):
         maxj = max(maxj, l.shape[1])
     print('max size = ', maxi, maxj)
     if target_shape is None:
-        target_nrow = maxi + 4
+        target_nrow = maxi    # no vertical padding
         target_ncol = maxj + 4
     else:
         target_nrow = target_shape[0]

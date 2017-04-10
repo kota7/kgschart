@@ -115,6 +115,52 @@ def pad_image(arr, target_rows, target_cols, value):
     return out
     
 
+def pad_crop_image(arr, target_rows, target_cols, value):
+    """
+    pad a certain value to arr so that the size becomes
+    target_rows and target_cols
+    crop image to the target shape 
+    if the size of arr is smaller than the target
+    
+    Args
+      arr: numpy array of shape (nrow, ncol)
+      target_rows: desired vertical size
+      target_cols: desired horizontal size
+      value: value to be padded
+    
+    Returns
+      numpy array
+    """
+    rows_toadd = target_rows - arr.shape[0]
+    if rows_toadd >= 0:
+        row_added1 = rows_toadd // 2
+        row_added2 = rows_toadd - row_added1
+    else:
+        # crop rows
+        i1 = -rows_toadd // 2
+        i2 = i1 + target_rows
+        arr = arr[i1:i2]
+        row_added1 = 0
+        row_added2 = 0
+    
+    
+    cols_toadd = target_cols - arr.shape[1]
+    if cols_toadd >= 0:
+        col_added1 = cols_toadd // 2
+        col_added2 = cols_toadd - col_added1
+    else:
+        # crop cols
+        j1 = -cols_toadd // 2
+        j2 = j1 + target_cols
+        arr = arr[:, j1:j2]
+        col_added1 = 0
+        col_added2 = 0
+        
+    out = np.pad(arr, ((row_added1, row_added2), (col_added1, col_added2)), 
+                 mode='constant', constant_values=value)
+    return out
+    
+
 
 
 def str_to_num_rank(str_rank):

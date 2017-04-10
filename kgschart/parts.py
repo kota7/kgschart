@@ -1,67 +1,16 @@
 # -*- coding: utf-8 -*- 
 
 
+import re
 import numpy as np
+from datetime import datetime
 from matplotlib import pyplot as plt
 
 from utils import rgb_dist, detect_consecutive_false, to_gray
 from utils import str_to_num_rank, num_to_str_rank
 from colors import BEIGE, GRAY, GREEN, BLACK
-from classifiers import LabelClassifier
+from classifiers import LabelClassifier, CaptionJaClassifier, CaptionEnClassifier
 
-
-class Caption:
-    image = None
-    
-    def __init__(self, image):
-        self.image = image
-        
-    def plot(self, show=True):
-        if self.image is None: return
-        plt.imshow(self.image)
-        if show: plt.show()
-
-    def extract_letters(self):
-        """
-        extract all sub images of letters
-
-        Returns
-          list of numpy arrays of shape(nrow,ncol)
-          each element is an image array.
-          if asgray: each element is (nrow, ncol) shape
-          otherwise: each element is (nrow, ncol, channel) shape
-        """
-        image = self.image
-        if image is None: return []
-        if image.size ==0: return []
-
-        thres_dist = 0.3
-        thres_frac = 1.0 
-
-        dist = rgb_dist(image, BEIGE)
-        is_beige = (dist < thres_dist)
-
-        # find rows that have non-background 
-        not_bg_row = (np.mean(is_beige, axis=1) < thres_frac)
-        if not np.any(not_bg_row): return []  # all background
-        # the first and last index of non-background
-        index = not_bg_row.nonzero()[0]
-        i1 = index[0]
-        i2 = index[-1]
-        
-        # split into letters  
-        frac = np.mean(is_beige[i1:(i2+1)], axis=0)
-        is_bg_col = (frac >= thres_frac)
-        start, end = detect_consecutive_false(is_bg_col)
-
-        out = [image[i1:(i2+1), a:b] for a,b in zip(start, end)]
-        
-        # to gray scale
-        for i in range(len(out)):
-            out[i] = to_gray(out[i], BEIGE, GRAY)
-        
-        return out
-        
 
 
 
@@ -134,13 +83,17 @@ class Graph:
 
 
 
+
+# this is shared by all instances of Yaxis
+label_classifier = LabelClassifier()
+
 class Yaxis:
     image = None
     nlabels = None
 
     def __init__(self, image):
         self.image = image
-        self.classifier = LabelClassifier()
+        self.classifier = label_classifier
 
     
     def plot(self, show=True):
@@ -160,7 +113,6 @@ class Yaxis:
           tuple of strings such as (2k, 1d)
         """
         label_list = self.get_label_list(positions)
-        
         ranks = ['' if l is None else self.classifier.predict(l) \
                  for l in label_list]
 
@@ -330,3 +282,89 @@ class Yaxis:
         
 
 
+
+# classifiers shared by all instances
+caption_ja_classifier = CaptionJaClassifier()
+caption_en_classifier = CaptionEnClassifier()
+
+class Caption:
+    image = None
+    
+    def __init__(self, image):
+        self.image = image
+        self.classifier_ja = caption_ja_classifier
+        self.classifier_en = caption_en_classifier
+        
+    def plot(self, show=True):
+        if self.image is None: return
+        plt.imshow(self.image)
+        if show: plt.show()
+
+    def extract_letters(self):
+        """
+        extract all sub images of letters
+
+        Returns
+          list of numpy arrays of shape(nrow,ncol)
+          each element is an image array.
+          if asgray: each element is (nrow, ncol) shape
+          otherwise: each element is (nrow, ncol, channel) shape
+        """
+        image = self.image
+        if image is None: return []
+        if image.size ==0: return []
+
+        thres_dist = 0.3
+        thres_frac = 1.0 
+
+        dist = rgb_dist(image, BEIGE)
+        is_beige = (dist < thres_dist)
+
+        # find rows that have non-background 
+        not_bg_row = (np.mean(is_beige, axis=1) < thres_frac)
+        if not np.any(not_bg_row): return []  # all background
+        # the first and last index of non-background
+        index = not_bg_row.nonzero()[0]
+        i1 = index[0]
+        i2 = index[-1]
+        
+        # split into letters  
+        frac = np.mean(is_beige[i1:(i2+1)], axis=0)
+        is_bg_col = (frac >= thres_frac)
+        start, end = detect_consecutive_false(is_bg_col)
+
+        out = [image[i1:(i2+1), a:b] for a,b in zip(start, end)]
+        
+        # to gray scale
+        for i in range(len(out)):
+            out[i] = to_gray(out[i], BEIGE, GRAY)
+        
+        return out
+    
+    
+    def get_time_range(self):
+        letter_array_list = self.extract_letters()     
+        
+        # Try Japanese parser first
+        title = self.classifier_ja.predict(letter_array_list)
+        
+        r = re.findall(r'(\d{2}/\d{2}/\d{2})(\d{1,2}:\d{1,2}){0,1}', title)
+        if len(r) >= 2: 
+            def to_datetime(s):
+                if s[1] == '':
+                    return datetime.strptime(s[0], '%y/%m/%d')
+                else:
+                    return datetime.strptime(s[0] + ' ' + s[1], '%y/%m/%d %H:%M')
+            out = [to_datetime(s) for s in r]
+            return tuple(out)
+        
+        # if Japanese parser does not work, try English parser
+        title = self.classifier_en.predict(letter_array_list)
+        r = re.findall(r'([A-Za-z]{3})(\d{1,2}).(\d{4})', title)
+        if len(r) >= 2:
+            def to_datetime(s):
+                return datetime.strptime(s[0] + ' ' + s[1] + ' ' + s[2], '%b %d %Y')
+            out = [to_datetime(s) for s in r]
+            return tuple(out)
+        return ()
+        

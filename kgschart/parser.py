@@ -102,7 +102,7 @@ class KgsChart:
         # obtain number of grid lines
         # this helps to detect y-axis labels
         ngrids = self.graph.get_num_grids()
-        print('num grids', ngrids)
+        #print('num grids', ngrids)
         
         positions = None
         if ngrids is not None:
@@ -110,14 +110,19 @@ class KgsChart:
             bottom = self.tblr[1]
             step = (bottom-top)//(ngrids+1)
             positions = list(range(top, bottom+1, step)) 
-        print('positions', positions)
+        #print('positions', positions)
 
 
         # obtain the rank range from yaxis
         self.set_rank_range(self.yaxis.get_rank_range(positions)) 
         print('rank range', self.rank_range)
-    
-
+        
+        
+        # obtain date-time range from caption
+        self.set_time_range(self.caption.get_time_range())    
+        print('time range', self.time_range)
+        
+        
     def extract_label_letters(self):
         if self.yaxis is None: return []
         return self.yaxis.extract_letters()
@@ -156,10 +161,22 @@ class KgsChart:
 
 if __name__=='__main__':
     k = KgsChart('../data/images/batch1-ja/kotakun-ja_JP.png')
+    print('kotakun-ja_JP.png')
     k.parse()
 
     k = KgsChart('../data/images/batch1-ja/Zen19L-ja_JP.png')
+    print('Zen19L-ja_JP.png')
     k.parse()
 
     k = KgsChart('../data/images/batch1-ja/hirabot-ja_JP.png')
+    print('hirabot-ja_JP.png')
     k.parse()
+
+    k = KgsChart('../data/images/batch4-en/kotakun.png')
+    print('kotakun.png')
+    k.parse()
+
+    k = KgsChart('../data/images/batch3-en/rokkitsci-en_US.png')
+    print('rokkitsci-en_US.png')
+    k.parse()
+

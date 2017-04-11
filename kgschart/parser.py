@@ -172,11 +172,15 @@ if __name__=='__main__':
     print('hirabot-ja_JP.png')
     k.parse()
 
-    k = KgsChart('../data/images/batch4-en/kotakun.png')
-    print('kotakun.png')
+    k = KgsChart('../tests/data/kotakun-en_US.png')
+    print('hirabot-ja_JP.png')
     k.parse()
 
-    k = KgsChart('../data/images/batch3-en/rokkitsci-en_US.png')
-    print('rokkitsci-en_US.png')
-    k.parse()
+    #k = KgsChart('../data/images/batch4-en/kotakun.png')
+    #print('kotakun.png')
+    #k.parse()
+
+    #k = KgsChart('../data/images/batch3-en/rokkitsci-en_US.png')
+    #print('rokkitsci-en_US.png')
+    #k.parse()
 

@@ -71,7 +71,7 @@ class LabelClassifier:
 
 class CaptionJaClassifier:
     predictor = None
-    input_shape = (17, 11)
+    input_shape = (18, 11)
     modelfile = os.path.join(os.path.dirname(__file__), \
                              'models/caption-ja_model.pkl')
 
@@ -119,10 +119,10 @@ class CaptionEnClassifier:
     predictor = None
     modelfile_paren = os.path.join(os.path.dirname(__file__), \
             'models/caption-en-paren_model.pkl') 
-    input_shape_paren = (17, 16)
+    input_shape_paren = (18, 16)
     modelfile_letter = os.path.join(os.path.dirname(__file__), \
             'models/caption-en-letter_model.pkl')    
-    input_shape_letter = (17, 18)
+    input_shape_letter = (18, 18)
 
     conversions = {'Jul': ['JuI']}
     def __init__(self):

@@ -4,10 +4,12 @@
 from PIL import Image
 import os
 import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plt
+from datetime import datetime
 
 from colors import BLACK, WHITE, BEIGE, GRAY, GREEN
-from utils import rgb_dist, detect_consecutive_true
+from utils import rgb_dist, detect_consecutive_true, str_to_num_rank
 from parts import Yaxis, Caption, Graph
 
 
@@ -40,6 +42,9 @@ class KgsChart:
     # horizontal and vertical range
     rank_range = ()  # e.g. (2k, 3d)
     time_range = ()  # e.g. (2013-04-03, 2014-05-12)
+
+    # output data
+    data = None
 
 
     def __init__(self, imagefile):
@@ -112,15 +117,56 @@ class KgsChart:
             positions = list(range(top, bottom+1, step)) 
         #print('positions', positions)
 
-
         # obtain the rank range from yaxis
         self.set_rank_range(self.yaxis.get_rank_range(positions)) 
         print('rank range', self.rank_range)
         
-        
         # obtain date-time range from caption
         self.set_time_range(self.caption.get_time_range())    
         print('time range', self.time_range)
+
+        # compile data
+        self.data = self.make_data()
+
+    def make_data(self):
+        """
+        Compile and return data frame
+        """
+        y = self.line_index
+        n = len(y)
+        if n == 0: 
+            #  empty dataframe if line index is empty 
+            return pd.DataFrame(dict(time=[], rate=[]))
+        if n == 1:
+            # this won't happen for normal input 
+            # just write this so that the later computation
+            # never raises error
+            return pd.DataFrame(dict(time=[np.nan], rate=y))
+        
+        # scale y
+        if len(self.rank_range) != 2:
+            y = -y 
+        else:
+            y1,y2 = [str_to_num_rank(r) for r in self.rank_range]
+            if np.isnan(y1) or np.isnan(y2):
+                y = -y
+            else:
+                z2 = 0
+                z1 = self.tblr[1] - self.tblr[2]
+                # (z1, z2) <-> (y1, y2)
+                b = (y2-y1)/(z2-z1)
+                a = y1-b*z1
+                y = a + b*y
+        
+        # scale x
+        if len(self.time_range) != 2:
+            x = np.arange(n)
+        else:
+            x1,x2 = self.time_range 
+            b = (x2-x1)/n 
+            x = x1 + (np.arange(n)+0.5)*b
+
+        return pd.DataFrame(dict(time=x, rate=y))
         
         
     def extract_label_letters(self):
@@ -131,6 +177,9 @@ class KgsChart:
         if self.caption is None: return []
         return self.caption.extract_letters()
 
+
+    # functions to set range for x and y axis
+    # can be used for user specification as well
     def set_time_range(self, time_range):
         self.time_range = time_range
     
@@ -138,7 +187,9 @@ class KgsChart:
         self.rank_range = rank_range
 
     
-    def plot(self):
+    # plot image and parts
+    # mainly for debugging
+    def plot_image(self):
         plt.subplot(221)
         plt.plot(1)
         
@@ -157,30 +208,17 @@ class KgsChart:
         plt.show()
 
 
+    def plot_data(self):
+        if self.data is None: 
+            plt.plot()
+            plt.show()
+            return
+        plt.plot(k.data['time'], k.data['rate'])
+        plt.grid()
+        plt.show()
 
 
-if __name__=='__main__':
-    k = KgsChart('../data/images/batch1-ja/kotakun-ja_JP.png')
-    print('kotakun-ja_JP.png')
-    k.parse()
 
-    k = KgsChart('../data/images/batch1-ja/Zen19L-ja_JP.png')
-    print('Zen19L-ja_JP.png')
-    k.parse()
 
-    k = KgsChart('../data/images/batch1-ja/hirabot-ja_JP.png')
-    print('hirabot-ja_JP.png')
-    k.parse()
 
-    k = KgsChart('../tests/data/kotakun-en_US.png')
-    print('hirabot-ja_JP.png')
-    k.parse()
-
-    #k = KgsChart('../data/images/batch4-en/kotakun.png')
-    #print('kotakun.png')
-    #k.parse()
-
-    #k = KgsChart('../data/images/batch3-en/rokkitsci-en_US.png')
-    #print('rokkitsci-en_US.png')
-    #k.parse()
 

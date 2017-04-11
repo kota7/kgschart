@@ -69,7 +69,6 @@ class Graph:
         min_dist = np.min(dist_green, axis=0)
         has_line = np.where(min_dist < 1.0)[0]
 
-        # initialize
         out = np.empty(im.shape[1]) 
         out[:] = np.nan
         for j in has_line:

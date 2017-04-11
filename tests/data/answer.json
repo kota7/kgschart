@@ -1,0 +1,82 @@
+{
+  "kotakun-ja_JP.png": {
+    "time_range": [
+      "2016-02-29 02:28",
+      "2017-04-04 02:28"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ]
+  },
+  "Zen19L-en_US.png": {
+    "time_range": [
+      "2016-11-24",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ]
+  },
+  "hirabot-en_US.png": {
+    "time_range": [
+      "2016-01-18",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "4d",
+      "7d"
+    ]
+  },
+  "Zen19L-ja_JP.png": {
+    "time_range": [
+      "2016-11-24 06:28",
+      "2017-04-04 06:28"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ]
+  },
+  "kotakun-en_US.png": {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ]
+  },
+  "idiotbot-ja_JP.png": {
+    "time_range": [
+      "2016-03-07 15:10",
+      "2017-04-11 15:10"
+    ],
+    "rank_range": [
+      "30k",
+      "27k"
+    ]
+  },
+  "idiotbot-en_US.png": {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "30k",
+      "27k"
+    ]
+  },
+  "hirabot-ja_JP.png": {
+    "time_range": [
+      "2016-02-29 10:49",
+      "2017-04-04 10:49"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ]
+  }
+}

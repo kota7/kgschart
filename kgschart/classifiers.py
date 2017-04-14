@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
 
-from utils import pad_crop_image 
+from .utils import pad_crop_image 
 
 
 class PadStackFlatten:

@@ -6,10 +6,10 @@ import numpy as np
 from datetime import datetime
 from matplotlib import pyplot as plt
 
-from utils import rgb_dist, detect_consecutive_false, to_gray
-from utils import str_to_num_rank, num_to_str_rank
-from colors import BEIGE, GRAY, GREEN, BLACK
-from classifiers import LabelClassifier, CaptionJaClassifier, CaptionEnClassifier
+from .utils import rgb_dist, detect_consecutive_false, to_gray
+from .utils import str_to_num_rank, num_to_str_rank
+from .colors import BEIGE, GRAY, GREEN, BLACK
+from .classifiers import LabelClassifier, CaptionJaClassifier, CaptionEnClassifier
 
 
 

@@ -8,9 +8,9 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from datetime import datetime
 
-from colors import BLACK, WHITE, BEIGE, GRAY, GREEN
-from utils import rgb_dist, detect_consecutive_true, str_to_num_rank
-from parts import Yaxis, Caption, Graph
+from .colors import BLACK, WHITE, BEIGE, GRAY, GREEN
+from .utils import rgb_dist, detect_consecutive_true, str_to_num_rank
+from .parts import Yaxis, Caption, Graph
 
 
 
@@ -213,7 +213,7 @@ class KgsChart:
             plt.plot()
             plt.show()
             return
-        plt.plot(k.data['time'], k.data['rate'])
+        plt.plot(self.data['time'], self.data['rate'])
         plt.grid()
         plt.show()
 

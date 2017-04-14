@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import numpy as np
+
 BLACK = np.array([  0,  0,  0])
 WHITE = np.array([255,255,255])
 BEIGE = np.array([221,221,136])

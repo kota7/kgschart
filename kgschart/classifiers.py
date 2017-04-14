@@ -5,6 +5,7 @@ import os
 import numpy as np
 from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
+from pkg_resources import resource_stream
 
 from .utils import pad_crop_image 
 
@@ -36,8 +37,7 @@ class LabelClassifier:
     predictor = None
 
     # don't know best practice to implement model save/load
-    modelfile = os.path.join(os.path.dirname(__file__),
-                             'models/label_model.pkl')
+    modelfile = resource_stream(__name__, 'models/label_model.pkl')
     input_shape = (16, 12)
 
     def __init__(self):
@@ -72,8 +72,7 @@ class LabelClassifier:
 class CaptionJaClassifier:
     predictor = None
     input_shape = (18, 11)
-    modelfile = os.path.join(os.path.dirname(__file__), \
-                             'models/caption-ja_model.pkl')
+    modelfile = resource_stream(__name__, 'models/caption-ja_model.pkl')
 
     conversions = {'2': ['z', 'Z'], 
                    '5': ['s', 'S'], 
@@ -117,11 +116,9 @@ class CaptionJaClassifier:
 
 class CaptionEnClassifier:
     predictor = None
-    modelfile_paren = os.path.join(os.path.dirname(__file__), \
-            'models/caption-en-paren_model.pkl') 
+    modelfile_paren = resource_stream(__name__, 'models/caption-en-paren_model.pkl') 
     input_shape_paren = (18, 16)
-    modelfile_letter = os.path.join(os.path.dirname(__file__), \
-            'models/caption-en-letter_model.pkl')    
+    modelfile_letter = resource_stream(__name__, 'models/caption-en-letter_model.pkl')    
     input_shape_letter = (18, 18)
 
     conversions = {'Jul': ['JuI']}

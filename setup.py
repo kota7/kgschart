@@ -10,7 +10,7 @@ setup(
     author_email='kmori05@gmail.com',
     
     packages=find_packages(),
-    install_requires=['numpy', 'pandas', 'scikit-learn>=0.18.0', 'matplotlib', 'pillows'],
+    install_requires=['numpy', 'pandas', 'scikit-learn>=0.18.0', 'matplotlib', 'pillow'],
     package_data={'kgschart': ['models/*.pkl']}
 )
 

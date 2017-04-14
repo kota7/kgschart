@@ -196,7 +196,7 @@ class Yaxis:
                     if i+1 < image.shape[0] and not index_checked[i+1]:
                         index_to_check.append(i+1) 
             if i1 <= i2:
-                print(i1, i2)
+                #print(i1, i2)
                 labels.append(image[i1:(i2+1)])
             else: 
                 labels.append(None)

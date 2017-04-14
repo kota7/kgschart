@@ -47,10 +47,7 @@ class KgsChart:
     data = None
 
 
-    def __init__(self, imagefile):
-        if  not os.path.exists(imagefile): 
-            raise IOError('No such file exists: "%s"' % imagefile)
-        
+    def __init__(self, imagefile):        
         self.image = np.asarray(Image.open(imagefile))
         self.tblr = self.detect_graph_area()
         
@@ -119,11 +116,11 @@ class KgsChart:
 
         # obtain the rank range from yaxis
         self.set_rank_range(self.yaxis.get_rank_range(positions)) 
-        print('rank range', self.rank_range)
+        #print('rank range', self.rank_range)
         
         # obtain date-time range from caption
         self.set_time_range(self.caption.get_time_range())    
-        print('time range', self.time_range)
+        #print('time range', self.time_range)
 
         # compile data
         self.data = self.make_data()
@@ -166,8 +163,11 @@ class KgsChart:
             b = (x2-x1)/n 
             x = x1 + (np.arange(n)+0.5)*b
 
-        return pd.DataFrame(dict(time=x, rate=y))
+        return pd.DataFrame(dict(time=x, rate=y), columns=['time', 'rate'])
         
+    def update_data(self):
+        self.data = self.make_data()
+    
         
     def extract_label_letters(self):
         if self.yaxis is None: return []
@@ -208,14 +208,14 @@ class KgsChart:
         plt.show()
 
 
-    def plot_data(self):
+    def plot_data(self, block=True):
         if self.data is None: 
             plt.plot()
             plt.show()
             return
         plt.plot(self.data['time'], self.data['rate'])
         plt.grid()
-        plt.show()
+        plt.show(block)
 
 
 

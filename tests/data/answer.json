@@ -1,4 +1,14 @@
 {
+  "pibot-ja_JP.png": {
+    "time_range": [],
+    "rank_range": []
+  },
+  "pibot-en_US.png": {
+    "time_range": [],
+    "rank_range": []
+  },
+  
+  
   "kotakun-ja_JP.png": {
     "time_range": [
       "2016-02-29 02:28",
@@ -55,7 +65,7 @@
       "2017-04-11 15:10"
     ],
     "rank_range": [
-      "30k",
+      "31k",
       "27k"
     ]
   },
@@ -65,7 +75,7 @@
       "2017-04-11"
     ],
     "rank_range": [
-      "30k",
+      "31k",
       "27k"
     ]
   },

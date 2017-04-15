@@ -15,6 +15,8 @@ setup(
                       'scikit-learn', 'matplotlib'],
     package_data={'kgschart': ['pretrained/*.pkl']},
     entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'}
+    
+    test_suite='tests'
 )
 
 

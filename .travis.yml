@@ -9,6 +9,8 @@ python:
 # command to install dependencies
 install:
   - pip install .
+before_install:
+  - pip install -U scipy
 # command to run tests
 script:
 - py.test -v tests/

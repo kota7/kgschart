@@ -10,7 +10,8 @@ setup(
     author_email='kmori05@gmail.com',
     
     packages=find_packages(),
-    install_requires=['numpy', 'pandas', 'scikit-learn>=0.18.0', 'matplotlib', 'pillow'],
+    install_requires=['pillow', 'numpy', 'pandas',  
+                      'scikit-learn', 'matplotlib'],
     package_data={'kgschart': ['models/*.pkl']},
     entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'}
 )

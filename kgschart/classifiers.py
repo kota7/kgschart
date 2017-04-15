@@ -32,24 +32,36 @@ class PadStackFlatten:
 
 
 
+# load pretrained models here, 
+# so all instances of a same class share a single model object
+# no need to load models when a new instance is created.
+model_dict = dict(
+    label=(joblib.load(resource_stream(__name__, 'models/label_model.pkl')),
+          (16, 12)),
+          
+    caption_ja=(joblib.load(resource_stream(__name__, 
+                                            'models/caption-ja_model.pkl')),
+               (18, 11)),
+               
+    caption_en_paren=(joblib.load(resource_stream(__name__, 
+                                                  'models/caption-en-paren_model.pkl')),
+                     (18, 16)),
+    caption_en_letter=(joblib.load(resource_stream(__name__, 
+                                                   'models/caption-en-letter_model.pkl')),
+                      (18, 18))
+)
+
+
 class LabelClassifier:
-    # prediction pipeline object
-    predictor = None
 
-    # don't know best practice to implement model save/load
-    modelfile = resource_stream(__name__, 'models/label_model.pkl')
-    input_shape = (16, 12)
-
+    model, input_shape = model_dict['label']
+    predictor = Pipeline([
+        ('prep', PadStackFlatten(input_shape)),
+        ('predict', model)
+    ]) 
+    
     def __init__(self):
-        # load model
-        model = joblib.load(self.modelfile)
-
-        # predictor pipeline
-        self.predictor = Pipeline([
-          ('prep', PadStackFlatten(self.input_shape)),
-          ('predict', model)
-        ]) 
-
+        pass
 
     def predict(self, X):
         """
@@ -70,22 +82,20 @@ class LabelClassifier:
 
 
 class CaptionJaClassifier:
-    predictor = None
-    input_shape = (18, 11)
-    modelfile = resource_stream(__name__, 'models/caption-ja_model.pkl')
 
+    model,input_shape = model_dict['caption_ja']
+    predictor = Pipeline([
+        ('prep', PadStackFlatten(input_shape)),
+        ('predict', model)
+    ]) 
+    
     conversions = {'2': ['z', 'Z'], 
                    '5': ['s', 'S'], 
                    '9': ['g'], 
                    '0': ['o', 'O'], 
                    '1': ['I', 'i', 'l']} 
     def __init__(self):
-        model = joblib.load(self.modelfile)
-
-        self.predictor = Pipeline([
-          ('prep', PadStackFlatten(self.input_shape)),
-          ('predict', model)
-        ])
+        pass
     
     def predict(self, X):
         """
@@ -115,25 +125,22 @@ class CaptionJaClassifier:
     
 
 class CaptionEnClassifier:
-    predictor = None
-    modelfile_paren = resource_stream(__name__, 'models/caption-en-paren_model.pkl') 
-    input_shape_paren = (18, 16)
-    modelfile_letter = resource_stream(__name__, 'models/caption-en-letter_model.pkl')    
-    input_shape_letter = (18, 18)
+
+    model_paren, input_shape_paren = model_dict['caption_en_paren']
+    predictor_paren = Pipeline([
+        ('prep', PadStackFlatten(input_shape_paren)),
+        ('predict', model_paren)
+    ])
+    
+    model_letter, input_shape_letter = model_dict['caption_en_letter']
+    predictor_letter = Pipeline([
+        ('prep', PadStackFlatten(input_shape_letter)),
+        ('predict', model_letter)
+    ])
 
     conversions = {'Jul': ['JuI']}
     def __init__(self):
-        model_paren = joblib.load(self.modelfile_paren)
-        model_letter = joblib.load(self.modelfile_letter)
-    
-        self.predictor_paren = Pipeline([
-          ('prep', PadStackFlatten(self.input_shape_paren)),
-          ('predict', model_paren)
-        ])
-        self.predictor_letter = Pipeline([
-          ('prep', PadStackFlatten(self.input_shape_letter)),
-          ('predict', model_letter)
-        ])
+        pass
 
     def predict(self, X):
         if type(X) != list: X = [X]

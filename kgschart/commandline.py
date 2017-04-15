@@ -5,20 +5,30 @@ import re
 from datetime import datetime
 from argparse import ArgumentParser
 from kgschart import KgsChart
-from urllib.request import urlopen
 
+# for python2 compatibility
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
+
+    
 def main():
     parser = ArgumentParser(description='Parse KGS rank graphs into data')
-    parser.add_argument('x', type=str, help='KGS ID or data file path')
-    parser.add_argument('--local', action='store_true', help='indicates "x" is a local file')
+    parser.add_argument('x', type=str, 
+                        help='KGS ID or file path. \
+                              If a KGS ID is given, then the recent rank graph is downloaded \
+                              from the online archive (internet connection required). \
+                              Alternatively, give a path to a local file and set "--local".')
+    parser.add_argument('-l', '--local', action='store_true', help='indicates "x" is a local file')
     parser.add_argument('-o', '--outfile', type=str, default=sys.stdout, help='output file path')
     parser.add_argument('-p', '--plot', action='store_true', help='plot image')
     parser.add_argument('--rank-range', type=str, default=None, 
                         help='manually assign rank range of the graph.\
-                              comma-separated string such as: "2k,3d"')
+                              Provide comma-separated strings such as: "2k,3d"')
     parser.add_argument('--time-range', type=str, default=None, 
                         help='manually assign date/time range of the graph.\
-                              format must be "%Y-%m-%d [%H:%M],%Y-%m-%d [%H:%M]"')
+                              Required format: "%%Y-%%m-%%d [%%H:%%M],%%Y-%%m-%%d [%%H:%%M]"')
     args = parser.parse_args()
     
     if args.local:

@@ -14,7 +14,7 @@ setup(
     install_requires=['pillow', 'numpy', 'pandas',  
                       'scikit-learn', 'matplotlib'],
     package_data={'kgschart': ['pretrained/*.pkl']},
-    entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'}
+    entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'},
     
     test_suite='tests'
 )

@@ -12,7 +12,7 @@ virtualenv:
 install:
   - pip install .
 before_install:  # http://stackoverflow.com/questions/40359049/no-module-named-scipy-while-it-is-installed
-  - pip install -U scipy
+  - pip install scipy
   - sudo apt-get update -qq
   - sudo apt-get install -qq libatlas-dev libatlas-base-dev liblapack-dev gfortran
 # command to run tests

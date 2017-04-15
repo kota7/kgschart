@@ -11,7 +11,7 @@ setup(
     url='https://github.com/kota7/kgschart',
     
     packages=['kgschart'],
-    install_requires=['pillow', 'numpy', 'pandas',  
+    install_requires=['pillow', 'numpy', 'scipy', 'pandas',  
                       'scikit-learn', 'matplotlib'],
     package_data={'kgschart': ['pretrained/*.pkl']},
     entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'},

@@ -1,4 +1,6 @@
-# kgschart
-Recover Numeric Data from KGS Rank Graph
+[![Build Status](https://travis-ci.org/kota7/kgschart.svg?branch=master)](https://travis-ci.org/kota7/kgschart)
 
-** UNDER DEVELOPMENT **
+# kgschart
+Parse KGS Rank Graph into Data
+
+Works with Python 3.5+

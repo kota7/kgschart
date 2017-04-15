@@ -36,18 +36,18 @@ class PadStackFlatten:
 # so all instances of a same class share a single model object
 # no need to load models when a new instance is created.
 model_dict = dict(
-    label=(joblib.load(resource_stream(__name__, 'models/label_model.pkl')),
+    label=(joblib.load(resource_stream(__name__, 'pretrained/label_model.pkl')),
           (16, 12)),
           
     caption_ja=(joblib.load(resource_stream(__name__, 
-                                            'models/caption-ja_model.pkl')),
+                                            'pretrained/caption-ja_model.pkl')),
                (18, 11)),
                
     caption_en_paren=(joblib.load(resource_stream(__name__, 
-                                                  'models/caption-en-paren_model.pkl')),
+                                                  'pretrained/caption-en-paren_model.pkl')),
                      (18, 16)),
     caption_en_letter=(joblib.load(resource_stream(__name__, 
-                                                   'models/caption-en-letter_model.pkl')),
+                                                   'pretrained/caption-en-letter_model.pkl')),
                       (18, 18))
 )
 

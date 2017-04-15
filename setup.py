@@ -8,11 +8,12 @@ setup(
     description='KGS rank graph parser',
     author='Kota Mori', 
     author_email='kmori05@gmail.com',
+    url='https://github.com/kota7/kgschart',
     
-    packages=find_packages(),
+    packages=['kgschart'],
     install_requires=['pillow', 'numpy', 'pandas',  
                       'scikit-learn', 'matplotlib'],
-    package_data={'kgschart': ['models/*.pkl']},
+    package_data={'kgschart': ['pretrained/*.pkl']},
     entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'}
 )
 

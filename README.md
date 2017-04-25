@@ -4,7 +4,7 @@ kgschart
 ==========
 Parse KGS Rank Graph into Data
 
-See [this page](https://kota7.github.io/kgschart/index.html) for the overview of the package.
+Visit [this page](https://kota7.github.io/kgschart/index.html) for the overview of the package.
 
 ## Installation
 

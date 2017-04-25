@@ -2,11 +2,13 @@
 
 
 import os
+import sys
 import numpy as np
+import json
 from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
 from pkg_resources import resource_stream
-
+from pkg_resources import resource_string
 from .utils import pad_crop_image 
 
 
@@ -31,25 +33,24 @@ class PadStackFlatten:
         return out
 
 
+# load model info
+model_info = json.loads(resource_string(__name__, 'pretrained/model-info.json').decode())
+print(model_info)
 
-# load pretrained models here, 
-# so all instances of a same class share a single model object
-# no need to load models when a new instance is created.
-model_dict = dict(
-    label=(joblib.load(resource_stream(__name__, 'pretrained/label_model.pkl')),
-          (16, 12)),
-          
-    caption_ja=(joblib.load(resource_stream(__name__, 
-                                            'pretrained/caption-ja_model.pkl')),
-               (18, 11)),
-               
-    caption_en_paren=(joblib.load(resource_stream(__name__, 
-                                                  'pretrained/caption-en-paren_model.pkl')),
-                     (18, 16)),
-    caption_en_letter=(joblib.load(resource_stream(__name__, 
-                                                   'pretrained/caption-en-letter_model.pkl')),
-                      (18, 18))
-)
+# check python version and set model directory accordingly
+PY3 = (sys.version_info[0] == 3)
+model_dir = 'pretrained/prot3/' if PY3 else 'pretrained/prot2/'
+print(model_dir)
+
+# load pretrained models
+# by loading here, all instances of a same class share a single model object
+# hence no need to load models when a new instance is created.
+model_dict = {}
+for m in model_info:
+  model_dict[m] = (joblib.load(resource_stream(
+                       __name__, os.path.join(model_dir, model_info[m]['file']))),
+                   tuple(model_info[m]['shape']))
+
 
 
 class LabelClassifier:

@@ -3,16 +3,21 @@
 
 from PIL import Image
 import os
+import sys
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from datetime import datetime
+from datetime import timedelta
 
 from .colors import BLACK, WHITE, BEIGE, GRAY, GREEN
 from .utils import rgb_dist, detect_consecutive_true, str_to_num_rank
 from .parts import Yaxis, Caption, Graph
 
 
+# on python3, we can multiply timedelta and float
+# we cannot do so on python2, so write a bit of code
+PY3 = (sys.version_info[0] == 3)
 
 
 class KgsChart:
@@ -161,7 +166,10 @@ class KgsChart:
         else:
             x1,x2 = self.time_range 
             b = (x2-x1)/n 
-            x = x1 + (np.arange(n)+0.5)*b
+            if PY3:
+                x = x1 + (np.arange(n)+0.5)*b
+            else:
+                x = np.array([x1 + timedelta(seconds=b.total_seconds()*(0.5+i)) for i in range(n)])
 
         return pd.DataFrame(dict(time=x, rate=y), columns=['time', 'rate'])
         

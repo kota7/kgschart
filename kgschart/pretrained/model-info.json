@@ -1,0 +1,22 @@
+{
+  "label": {
+    "file": "label_pca-mlp-full.pkl",
+    "shape": [16, 12]  
+   },
+   
+   "caption_ja": {
+     "file": "caption-ja-loose_pca-mlp-full.pkl",
+     "shape": [18, 11]
+   },
+   
+   "caption_en_paren": {
+     "file": "caption-en-paren_pca-mlp-full.pkl",
+     "shape": [18, 16]
+   },
+
+   "caption_en_letter": {
+     "file": "caption-en-letter_pca-mlp-full.pkl",
+     "shape": [18, 18]
+   }   
+}
+

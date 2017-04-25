@@ -35,12 +35,12 @@ class PadStackFlatten:
 
 # load model info
 model_info = json.loads(resource_string(__name__, 'pretrained/model-info.json').decode())
-print(model_info)
+#print(model_info)
 
 # check python version and set model directory accordingly
 PY3 = (sys.version_info[0] == 3)
 model_dir = 'pretrained/prot3/' if PY3 else 'pretrained/prot2/'
-print(model_dir)
+#print(model_dir)
 
 # load pretrained models
 # by loading here, all instances of a same class share a single model object

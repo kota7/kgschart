@@ -27,7 +27,14 @@ install:
   # Replace dep1 dep2 ... with your dependencies
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy pillow scipy pandas scikit-learn matplotlib
   - source activate test-environment
+  - which python
+  - conda list
+  - conda env list
   - python setup.py install
+  - which python
+  - conda list
+  - conda env list
+  
   
 # command to run tests
 script:

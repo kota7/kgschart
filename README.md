@@ -77,3 +77,4 @@ print(k.data.head())
 #4 2016-03-24 12:27:10.485436  2.232779
 ```
 
+See [this page](https://kota7.github.io/kgschart/index.html) for more about the usage of the package.

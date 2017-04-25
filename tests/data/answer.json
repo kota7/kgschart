@@ -1,4 +1,5 @@
 {
+
   "pibot-ja_JP.png": {
     "time_range": [],
     "rank_range": []
@@ -6,6 +7,27 @@
   "pibot-en_US.png": {
     "time_range": [],
     "rank_range": []
+  },
+
+  "leela-ja_JP.png": {
+    "time_range": [
+      "2016-03-21 14:33",
+      "2017-04-25 14:33"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ]
+  },
+  "leela-en_US.png": {
+    "time_range": [
+      "2016-03-21",
+      "2017-04-25"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ]
   },
   
   

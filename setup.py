@@ -13,7 +13,8 @@ setup(
     packages=['kgschart'],
     install_requires=['pillow', 'numpy', 'scipy', 'pandas',  
                       'scikit-learn', 'matplotlib'],
-    package_data={'kgschart': ['pretrained/*/*.pkl', 'pretrained/model-info.json']},
+    package_data={'kgschart': ['pretrained/prot2/*.pkl', 'pretrained/prot3/*.pkl', 
+                               'pretrained/model-info.json']},
     entry_points={'console_scripts': 'kgschart=kgschart.commandline:main'},
     
     test_suite='tests'

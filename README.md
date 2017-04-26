@@ -2,31 +2,32 @@
 
 kgschart
 ==========
-Parse KGS Rank Graph into Data
 
+`kgschart` is a python pakcage for parsing KGS rank graphs into numeric data.
 Visit [this page](https://kota7.github.io/kgschart/index.html) for the overview of the package.
+
+## Requirements
+
+- Python `2.7+` or `3.4+`
+- `numpy` `pillow` `scipy` `pandas` `scikit-learn` `matplotlib`
 
 ## Installation
 
-The installation is easiest with [anaconda](https://anaconda.org/)/[miniconda](https://conda.io/miniconda.html) python distribution, since it automatically resolves
-dependencies on scientific computation libraries such as `numpy`, `scipy`, and `scikit-learn`.
-
-The package has been tested on miniconda on Linux for python versions `2.7`, `3.4`, `3.5`, and `3.6`.
-
+The installation is the easiest with [anaconda](https://anaconda.org/)/[miniconda](https://conda.io/miniconda.html) python distribution, since it simplifies the setup process for scientific computation libraries such as `numpy`, `scipy`, and `scikit-learn`.
 
 ### anaconda/miniconda users
 
 If you use python distribution based on anaconda or miniconda based environment, first, install required packages by `conda` command:
 
 ```bash
-conda install numpy pillow scipy pandas scikit-learn matplotlib pip
+$ conda install numpy pillow scipy pandas scikit-learn matplotlib pip
 ```
 
 Then, install `kgschart` package by:
 
 ```bash
-git clone --depth 1 https://github.com/kota7/kgschart.git
-pip install --no-deps kgschart
+$ git clone --depth 1 https://github.com/kota7/kgschart.git
+$ pip install --no-deps kgschart
 ```
 Note that we should use `--no-deps` flag since required packages are already installed by `conda`.
 
@@ -34,42 +35,38 @@ Note that we should use `--no-deps` flag since required packages are already ins
 Alternatively, download the package directly from GitHub
 
 ```bash
-pip install --no-deps git+https://github.com/kota7/kgschart
+$ pip install --no-deps git+https://github.com/kota7/kgschart
 ```
 
 
 ### Official Python (non-conda) users
 
-The `kgschart` package works also on official (non-conda) Python.
+The `kgschart` package works also on official (non-conda) Python (provided that dependencies are installed properly).
 
 The following command tries to install the package along with the dependencies.
 
 ```bash
-git clone --depth 1 https://github.com/kota7/kgschart.git
-pip install kgschart
+$ git clone --depth 1 https://github.com/kota7/kgschart.git
+$ pip install kgschart
 ```
 
 Alternatively, download the package directly from GitHub
 
 ```bash
-pip install git+https://github.com/kota7/kgschart
+$ pip install git+https://github.com/kota7/kgschart
 ```
-
-Depending on the environment and Python versions, the package may not work as expeted.  You would need to set up required packages on your own.
-The required packages are
-`numpy` `pillow` `scipy` `pandas` `scikit-learn` and `matplotlib`.
 
 
 ## Quick Installation Check
 
 If the installation is successful, following commands should run with no error.
 ```python
-from kgschart import KgsChart
-from pkg_resources import resource_stream
-with resource_stream('kgschart', 'example/leela-ja_JP.png') as f:
-    k = KgsChart(f)
-k.parse()
-print(k.data.head())
+>>> from kgschart import KgsChart
+>>> from pkg_resources import resource_stream
+>>> with resource_stream('kgschart', 'example/leela-ja_JP.png') as f:
+        k = KgsChart(f)
+>>> k.parse()
+>>> print(k.data.head())
 #                        time      rate
 #0 2016-03-21 22:19:01.165048  1.762470
 #1 2016-03-22 13:51:03.495146  1.762470

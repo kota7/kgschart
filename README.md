@@ -64,7 +64,7 @@ If the installation is successful, following commands should run with no error.
 >>> from kgschart import KgsChart
 >>> from pkg_resources import resource_stream
 >>> with resource_stream('kgschart', 'example/leela-ja_JP.png') as f:
-        k = KgsChart(f)
+....    k = KgsChart(f)
 >>> k.parse()
 >>> print(k.data.head())
 #                        time      rate

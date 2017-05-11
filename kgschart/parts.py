@@ -346,7 +346,7 @@ class Caption:
         
         # Try Japanese parser first
         title = self.classifier_ja.predict(letter_array_list)
-        
+        #print(title)
         r = re.findall(r'(\d{2}/\d{2}/\d{2})(\d{1,2}:\d{1,2}){0,1}', title)
         if len(r) >= 2: 
             def to_datetime(s):
@@ -359,6 +359,7 @@ class Caption:
         
         # if Japanese parser does not work, try English parser
         title = self.classifier_en.predict(letter_array_list)
+        #print(title)
         r = re.findall(r'([A-Za-z]{3})(\d{1,2}).(\d{4})', title)
         if len(r) >= 2:
             def to_datetime(s):

@@ -8,13 +8,15 @@ from glob import glob
 from matplotlib import pyplot as plt
 import numpy as np
 
-# include kgschart directory to the python path
 proj_root = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../'))
-module_path = os.path.join(proj_root, 'kgschart')
-sys.path.insert(0, module_path)
-from parser import KgsChart
-from utils import pad_image
 
+# include kgschart directory to the python path
+#module_path = os.path.join(proj_root, 'kgschart')
+#sys.path.insert(0, module_path)
+#from parser import KgsChart
+#from utils import pad_image
+from kgschart import KgsChart
+from kgschart.utils import pad_image
 
 def remove_duplicates(arr):
     """
@@ -89,7 +91,8 @@ def save_x(filelist, outname, target_shape=None):
 
 # data path
 filelist = [f for f in glob(os.path.join(proj_root, 'data/images/batch3-en/*.png'))] + \
-           [f for f in glob(os.path.join(proj_root, 'data/images/batch4-en/*.png'))]
+           [f for f in glob(os.path.join(proj_root, 'data/images/batch4-en/*.png'))] + \
+           [f for f in glob(os.path.join(proj_root, 'data/images/batch5-en/*.png'))] 
 save_x(filelist, os.path.join(proj_root, 'data/caption/X-en.npy'), None)
 
 

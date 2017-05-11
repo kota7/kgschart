@@ -1,0 +1,266 @@
+[
+  {
+    "time_range": [
+      "2016-11-24",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-08.png"
+  },
+  {
+    "time_range": [
+      "2016-02-29 2:28",
+      "2017-04-04 2:28"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ],
+    "file": "sample-18.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-05.png"
+  },
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-19.png"
+  },
+  {
+    "time_range": [
+      "2016-11-24 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-02.png"
+  },
+  {
+    "time_range": [
+      "2016-03-21 14:33",
+      "2017-04-25 14:33"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-17.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06 1:03",
+      "2017-05-11 1:03"
+    ],
+    "rank_range": [
+      "1k",
+      "3d"
+    ],
+    "file": "sample-06.png"
+  },
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-21.png"
+  },
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-09.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "1k",
+      "3d"
+    ],
+    "file": "sample-11.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07 15:10",
+      "2017-04-11 15:10"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-15.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-10.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-12.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-04.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ],
+    "file": "sample-23.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-01.png"
+  },
+  {
+    "time_range": [
+      "2016-11-24",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-20.png"
+  },
+  {
+    "time_range": [
+      "2016-02-29 10:49",
+      "2017-04-04 10:49"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-16.png"
+  },
+  {
+    "time_range": [
+      "2016-11-24 6:28",
+      "2017-04-04 6:28"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-14.png"
+  },
+  {
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-03.png"
+  },
+  {
+    "time_range": [
+      "2016-01-18",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "4d",
+      "7d"
+    ],
+    "file": "sample-22.png"
+  },
+  {
+    "time_range": [
+      "2016-03-21",
+      "2017-04-25"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-24.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-13.png"
+  },
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-07.png"
+  }
+]

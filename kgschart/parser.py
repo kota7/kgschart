@@ -158,7 +158,7 @@ class KgsChart:
                 # (z1, z2) <-> (y1, y2)
                 b = (y2-y1)/(z2-z1)
                 a = y1-b*z1
-                y = a + b*y
+                y = a + b*(y+0.5)
         
         # scale x
         if len(self.time_range) != 2:

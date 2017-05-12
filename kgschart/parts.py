@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 
 from .utils import rgb_dist, detect_consecutive_false, to_gray
 from .utils import str_to_num_rank, num_to_str_rank
-from .colors import BEIGE, GRAY, GREEN, BLACK
+from .colors import BEIGE, GRAY, DGRAY, LGRAY, GREEN, BLACK
 from .classifiers import LabelClassifier, CaptionJaClassifier, CaptionEnClassifier
 
 
@@ -33,9 +33,12 @@ class Graph:
         if im is None or im.shape[0] < 1 or im.shape[1] < 1: 
             return None 
 
-        thres_dist = 0.2
+        thres_dist = 0.1
         thres_frac = 0.9
-        mostly_gray = (rgb_dist(im, GRAY) < thres_dist)
+        mostly_gray = (rgb_dist(im, GRAY) < thres_dist)  | \
+                      (rgb_dist(im, DGRAY) < thres_dist) | \
+                      (rgb_dist(im, LGRAY) < thres_dist)
+                                    
         frac = np.mean(mostly_gray, axis=1)
         gray_index = (frac > thres_frac).nonzero()[0]
 
@@ -114,6 +117,8 @@ class Yaxis:
         label_list = self.get_label_list(positions)
         ranks = ['' if l is None else self.classifier.predict(l) \
                  for l in label_list]
+        #print(len(label_list))
+        #print(ranks)
 
         # look for the max rank from the top
         max_rank = None
@@ -365,11 +370,16 @@ class Caption:
         if len(r) >= 2:
             def to_datetime(s):
                 a,b,c = s
-                for key in self.classifier_en.conversions:
-                    a = a.replace(self.classifier_en.conversions[key], key)
                 #print(a, b, c)
-                return datetime.strptime(a + ' ' + s[1] + ' ' + s[2], '%b %d %Y')
-            out = [to_datetime(s) for s in r]
+                for key in self.classifier_en.conversions:
+                    a = a.replace(key, self.classifier_en.conversions[key])
+                #print(a, b, c)
+                if not (a in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', \
+                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']):
+                    return None
+                return datetime.strptime(a + ' ' + b + ' ' + c, '%b %d %Y')
+            out = [to_datetime(s) for s in r[0:2]]
+            if out[0] is None or out[1] is None: return()
             return tuple(out)
         return ()
         

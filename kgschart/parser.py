@@ -161,6 +161,7 @@ class KgsChart:
                 y = a + b*(y+0.5)
         
         # scale x
+        #print(self.time_range)
         if len(self.time_range) != 2:
             x = np.arange(n)
         else:

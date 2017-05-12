@@ -136,7 +136,7 @@ class CaptionEnClassifier:
     conversions = {'0': 'O',
                    '1': 'l',
                    '2': 'Z',
-                   '5': 'Z',
+                   '5': 'S',
                    '6': 'b',
                    '9': 'g'}
                    

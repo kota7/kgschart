@@ -93,7 +93,8 @@ def save_x(filelist, outname, target_shape=None):
 filelist = [f for f in glob(os.path.join(proj_root, 'data/images/batch3-en/*.png'))] + \
            [f for f in glob(os.path.join(proj_root, 'data/images/batch4-en/*.png'))] + \
            [f for f in glob(os.path.join(proj_root, 'data/images/batch5-en/*.png'))] + \
-           [f for f in glob(os.path.join(proj_root, 'data/images/batch6-en/*.png'))] 
+           [f for f in glob(os.path.join(proj_root, 'data/images/batch6-en/*.png'))] + \
+           [f for f in glob(os.path.join(proj_root, 'data/images/batch7-en/*.png'))]
 save_x(filelist, os.path.join(proj_root, 'data/caption/X-en.npy'), None)
 
 

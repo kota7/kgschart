@@ -34,6 +34,13 @@ class TestParser(unittest.TestCase):
         self.assertEqual(k.rank_range, rank_range)
         self.assertEqual(k.time_range, time_range)
 
+        # useful for going through all
+        #if k.rank_range != rank_range or k.time_range != time_range: 
+        #    print('BOO!')
+        #    return
+        
+            
+                
     def test_all_cases(self):
         cases = json.loads( \
             resource_string(__name__, 'data/answers.json').decode())

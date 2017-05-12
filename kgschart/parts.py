@@ -360,10 +360,15 @@ class Caption:
         # if Japanese parser does not work, try English parser
         title = self.classifier_en.predict(letter_array_list)
         #print(title)
-        r = re.findall(r'([A-Za-z]{3})(\d{1,2}).(\d{4})', title)
+        r = re.findall(r'([A-Za-z0-9]{3})(\d{1,2}).(\d{4})', title)
+         
         if len(r) >= 2:
             def to_datetime(s):
-                return datetime.strptime(s[0] + ' ' + s[1] + ' ' + s[2], '%b %d %Y')
+                a,b,c = s
+                for key in self.classifier_en.conversions:
+                    a = a.replace(self.classifier_en.conversions[key], key)
+                #print(a, b, c)
+                return datetime.strptime(a + ' ' + s[1] + ' ' + s[2], '%b %d %Y')
             out = [to_datetime(s) for s in r]
             return tuple(out)
         return ()

@@ -1,22 +1,26 @@
 {
+  "caption_ja": {
+    "conf": "caption-ja-loose-config.json",
+    "file": "caption-ja-loose_pca-mlp-full.pkl",
+    "shape": [
+      18,
+      11
+    ]
+  },
   "label": {
+    "conf": "label-config.json",
     "file": "label_pca-mlp-full.pkl",
-    "shape": [16, 12]  
-   },
-   
-   "caption_ja": {
-     "file": "caption-ja-loose_pca-mlp-full.pkl",
-     "shape": [18, 11]
-   },
-   
-   "caption_en_paren": {
-     "file": "caption-en-paren_pca-mlp-full.pkl",
-     "shape": [18, 16]
-   },
-
-   "caption_en_letter": {
-     "file": "caption-en-letter_pca-mlp-full.pkl",
-     "shape": [18, 18]
-   }   
+    "shape": [
+      16,
+      12
+    ]
+  },
+  "caption_en": {
+    "conf": "caption-en-loose-config.json",
+    "file": "caption-en_pca-loose-mlp-full.pkl",
+    "shape": [
+      17,
+      16
+    ]
+  }
 }
-

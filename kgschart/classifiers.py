@@ -47,9 +47,9 @@ model_dir = 'pretrained/prot3/' if PY3 else 'pretrained/prot2/'
 # hence no need to load models when a new instance is created.
 model_dict = {}
 for m in model_info:
-  model_dict[m] = (joblib.load(resource_stream(
+    model_dict[m] = (joblib.load(resource_stream(
                        __name__, os.path.join(model_dir, model_info[m]['file']))),
-                   tuple(model_info[m]['shape']))
+                     tuple(model_info[m]['shape']))
 
 
 
@@ -127,47 +127,27 @@ class CaptionJaClassifier:
 
 class CaptionEnClassifier:
 
-    model_paren, input_shape_paren = model_dict['caption_en_paren']
-    predictor_paren = Pipeline([
-        ('prep', PadStackFlatten(input_shape_paren)),
-        ('predict', model_paren)
-    ])
-    
-    model_letter, input_shape_letter = model_dict['caption_en_letter']
-    predictor_letter = Pipeline([
-        ('prep', PadStackFlatten(input_shape_letter)),
-        ('predict', model_letter)
-    ])
+    model,input_shape = model_dict['caption_en']
+    predictor = Pipeline([
+        ('prep', PadStackFlatten(input_shape)),
+        ('predict', model)
+    ]) 
 
-    conversions = {'Jul': ['JuI']}
+    conversions = {'0': 'O',
+                   '1': 'l',
+                   '2': 'Z',
+                   '5': 'Z',
+                   '6': 'b',
+                   '9': 'g'}
+                   
     def __init__(self):
         pass
 
     def predict(self, X):
         if type(X) != list: X = [X]
         
-        # find parenthesis
-        y = self.predictor_paren.predict(X)
-        for i in range(len(y)):
-            if y[i] == '(':
-                i1 = i
-                break
-        else:
-            return ()
-        for i in reversed(range(len(y))):
-            if y[i] == ')':
-                i2 = i
-                break
-        else:
-            return()
-        if i1 > i2: return ()
-        
-        # identify letters
-        out = self.predictor_letter.predict(X[i1:i2])
-        out = ''.join(out)
-        for key in self.conversions:
-            for letter in self.conversions[key]:
-                out = out.replace(letter, key)
+        out = self.predictor.predict(X)
+        out = ''.join(out)        
         return out
 
 

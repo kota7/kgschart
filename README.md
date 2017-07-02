@@ -6,6 +6,11 @@ kgschart
 `kgschart` is a python pakcage for parsing KGS rank graphs into numeric data.
 Visit [this page](https://kota7.github.io/kgschart/index.html) for the overview of the package.
 
+## NEWS
+
+- [R version](https://github.com/kota7/kgschart-r) of the same functionality has been developed
+- [A web app](https://kota.shinyapps.io/kgschart-app/) has been published
+
 ## Requirements
 
 - Python `2.7+` or `3.4+`

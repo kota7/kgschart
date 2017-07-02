@@ -1,0 +1,134 @@
+[
+  {
+    "file": "sample-01_09.png",
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ]
+  },
+  {
+    "file": "sample-01_05.png",
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ]
+  },
+  {
+    "file": "sample-01_12.png",
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ]
+  },
+  {
+    "file": "sample-01_11.png",
+    "time_range": [
+      "2016-04-06 1:03",
+      "2017-05-11 1:03"
+    ],
+    "rank_range": [
+      "1k",
+      "3d"
+    ]
+  },
+  {
+    "file": "sample-01_04.png",
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ]
+  },
+  {
+    "file": "sample-01_01.png",
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ]
+  },
+  {
+    "file": "sample-01_06.png",
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "1k",
+      "3d"
+    ]
+  },
+  {
+    "file": "sample-01_07.png",
+    "time_range": [
+      "2016-11-24",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ]
+  },
+  {
+    "file": "sample-01_10.png",
+    "time_range": [
+      "2016-04-06 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ]
+  },
+  {
+    "file": "sample-01_02.png",
+    "time_range": [
+      "2016-11-24 11:43",
+      "2017-05-11 11:43"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ]
+  },
+  {
+    "file": "sample-01_03.png",
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ]
+  },
+  {
+    "file": "sample-01_08.png",
+    "time_range": [
+      "2016-04-06",
+      "2017-05-11"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ]
+  }
+]

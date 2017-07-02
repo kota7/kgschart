@@ -1,0 +1,277 @@
+[
+  {
+    "rank_range": [
+      "12k",
+      "8k"
+    ],
+    "file": "sample-04_22.png",
+    "time_range": [
+      "2016-10-27",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "10k",
+      "8k"
+    ],
+    "file": "sample-04_11.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-04_15.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "16k",
+      "9k"
+    ],
+    "file": "sample-04_10.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "15k",
+      "13k"
+    ],
+    "file": "sample-04_02.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "7k",
+      "3d"
+    ],
+    "file": "sample-04_14.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-04_12.png",
+    "time_range": [
+      "None",
+      "None"
+    ]
+  },
+  {
+    "rank_range": [
+      "11k",
+      "5k"
+    ],
+    "file": "sample-04_17.png",
+    "time_range": [
+      "2016-05-28 0:29",
+      "2017-07-02 0:29"
+    ]
+  },
+  {
+    "rank_range": [
+      "1k",
+      "3d"
+    ],
+    "file": "sample-04_01.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-04_25.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "7d",
+      "9d"
+    ],
+    "file": "sample-04_09.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "16k",
+      "4k"
+    ],
+    "file": "sample-04_23.png",
+    "time_range": [
+      "2016-12-06",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-04_04.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "5k",
+      "2k"
+    ],
+    "file": "sample-04_21.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "16k",
+      "9k"
+    ],
+    "file": "sample-04_08.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "13k",
+      "8k"
+    ],
+    "file": "sample-04_07.png",
+    "time_range": [
+      "2017-03-22",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "7k",
+      "1d"
+    ],
+    "file": "sample-04_06.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "6d",
+      "7d"
+    ],
+    "file": "sample-04_18.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "15k",
+      "13k"
+    ],
+    "file": "sample-04_13.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "10k",
+      "6k"
+    ],
+    "file": "sample-04_19.png",
+    "time_range": [
+      "2016-05-28 0:29",
+      "2017-07-02 0:29"
+    ]
+  },
+  {
+    "rank_range": [
+      "1k",
+      "3d"
+    ],
+    "file": "sample-04_24.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "16k",
+      "8k"
+    ],
+    "file": "sample-04_05.png",
+    "time_range": [
+      "2016-08-01 0:29",
+      "2017-07-02 0:29"
+    ]
+  },
+  {
+    "rank_range": [
+      "9k",
+      "7k"
+    ],
+    "file": "sample-04_03.png",
+    "time_range": [
+      "2016-05-28 0:28",
+      "2017-07-02 0:28"
+    ]
+  },
+  {
+    "rank_range": [
+      "13k",
+      "11k"
+    ],
+    "file": "sample-04_20.png",
+    "time_range": [
+      "2016-05-28",
+      "2017-07-02"
+    ]
+  },
+  {
+    "rank_range": [
+      "18k",
+      "8k"
+    ],
+    "file": "sample-04_16.png",
+    "time_range": [
+      "2017-03-10 0:28",
+      "2017-07-02 0:28"
+    ]
+  }
+]

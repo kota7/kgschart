@@ -42,8 +42,10 @@ class TestParser(unittest.TestCase):
             
                 
     def test_all_cases(self):
-        cases = json.loads( \
-            resource_string(__name__, 'data/answers.json').decode())
+        cases = []
+        for i in range(1, 5):
+            cases += json.loads( \
+                resource_string(__name__, 'data/ans-%d.json' % i).decode())
         print('')
         for case in cases:
             print('*', case['file'], '...')

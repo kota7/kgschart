@@ -1,0 +1,134 @@
+[
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-02_03.png"
+  },
+  {
+    "time_range": [
+      "None",
+      "None"
+    ],
+    "rank_range": [
+      "None",
+      "None"
+    ],
+    "file": "sample-02_11.png"
+  },
+  {
+    "time_range": [
+      "2016-11-24",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-02_12.png"
+  },
+  {
+    "time_range": [
+      "2016-02-29 10:49",
+      "2017-04-04 10:49"
+    ],
+    "rank_range": [
+      "5d",
+      "7d"
+    ],
+    "file": "sample-02_07.png"
+  },
+  {
+    "time_range": [
+      "2016-02-29 2:28",
+      "2017-04-04 2:28"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ],
+    "file": "sample-02_02.png"
+  },
+  {
+    "time_range": [
+      "2016-11-24 6:28",
+      "2017-04-04 6:28"
+    ],
+    "rank_range": [
+      "9d",
+      "11d"
+    ],
+    "file": "sample-02_09.png"
+  },
+  {
+    "time_range": [
+      "2016-03-21",
+      "2017-04-25"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-02_06.png"
+  },
+  {
+    "time_range": [
+      "2016-03-21 14:33",
+      "2017-04-25 14:33"
+    ],
+    "rank_range": [
+      "2d",
+      "5d"
+    ],
+    "file": "sample-02_08.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07 15:10",
+      "2017-04-11 15:10"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-02_05.png"
+  },
+  {
+    "time_range": [
+      "2016-01-18",
+      "2017-01-30"
+    ],
+    "rank_range": [
+      "4d",
+      "7d"
+    ],
+    "file": "sample-02_10.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "2k",
+      "3d"
+    ],
+    "file": "sample-02_01.png"
+  },
+  {
+    "time_range": [
+      "2016-03-07",
+      "2017-04-11"
+    ],
+    "rank_range": [
+      "31k",
+      "27k"
+    ],
+    "file": "sample-02_04.png"
+  }
+]

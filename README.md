@@ -32,7 +32,7 @@ Then, install `kgschart` package by:
 
 ```bash
 $ git clone --depth 1 https://github.com/kota7/kgschart.git
-$ pip install --no-deps kgschart
+$ pip install --no-deps ./kgschart
 ```
 Note that we should use `--no-deps` flag since required packages are already installed by `conda`.
 
@@ -52,7 +52,7 @@ The following command tries to install the package along with the dependencies.
 
 ```bash
 $ git clone --depth 1 https://github.com/kota7/kgschart.git
-$ pip install kgschart
+$ pip install ./kgschart
 ```
 
 Alternatively, download the package directly from GitHub
